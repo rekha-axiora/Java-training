@@ -1,0 +1,30 @@
+DAY 5 — SHELL & SCRIPTING
+-------------------------
+Introduction
+-------------
+Shell is a command-line interface to interact with OS.
+* Executes commands
+* Interacts with OS
+
+Variables
+---------
+name="Rekha"
+echo $name
+  
+Input/Output
+------------
+> → overwrite
+>> → append
+
+Conditions
+----------
+if [ $a -gt 10 ]; then
+ echo "Greater"
+fi
+  
+Loops
+-----
+for i in {1..10}
+do
+ echo $i
+done
