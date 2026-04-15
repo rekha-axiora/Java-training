@@ -1,0 +1,68 @@
+
+============================
+DAY 10 — DEBUGGING WITH IDE
+============================
+
+1. DEBUGGING
+
+Definition:
+Process of finding and fixing errors in program
+
+
+----------------------------------------
+2. TYPES OF ERRORS
+
+- Syntax Error → compile error
+- Runtime Error → crash during run
+- Logical Error → wrong output
+
+
+----------------------------------------
+3. DEBUGGING TOOLS
+
+Breakpoint:
+Stops execution at specific line
+
+Step Over:
+Executes next line
+
+Step Into:
+Goes inside method
+
+Step Out:
+Comes out of method
+
+
+----------------------------------------
+4. WHY DEBUGGING IMPORTANT
+
+- Finds logic mistakes
+- Helps understand program flow
+- Improves coding skills
+
+
+----------------------------------------
+5. EXAMPLE
+
+int a=10;
+int b=0;
+System.out.println(a/b); // runtime error
+
+
+Tasks:
+------
+
+1. IDENTIFY ERROR
+int a=10/0; → runtime error
+
+2. FIX ERROR
+Use valid division
+
+3. DEBUG LOOP
+Check value of i step by step
+
+4. CHECK VARIABLES
+Use breakpoint and observe values
+
+5. FIX LOGIC
+Compare expected vs actual output
