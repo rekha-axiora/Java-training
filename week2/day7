@@ -1,0 +1,146 @@
+==========================
+DAY 7 — LOOPS & CONDITIONS 
+==========================
+
+1. IF-ELSE
+
+Definition:
+Used to make decisions
+
+Example:
+if(n>5){
+    System.out.println("Greater");
+}else{
+    System.out.println("Smaller");
+}
+
+----------------------------------------
+2. SWITCH
+
+Definition:
+Used for multiple choices
+
+Example:
+switch(day){
+ case 1: System.out.println("Mon"); break;
+}
+
+
+----------------------------------------
+3. FOR LOOP
+
+Definition:
+Used when number of iterations is known
+
+Example:
+for(int i=1;i<=5;i++){
+    System.out.println(i);
+}
+
+
+----------------------------------------
+4. WHILE LOOP
+
+Definition:
+Runs until condition is true
+
+Example:
+while(i<=5){
+    i++;
+}
+
+
+----------------------------------------
+5. DO-WHILE
+
+Definition:
+Runs at least once
+
+Example:
+do{
+    i++;
+}while(i<=5);
+
+
+----------------------------------------
+6. BREAK
+
+Definition:
+Stops loop immediately
+
+
+----------------------------------------
+7. CONTINUE
+
+Definition:
+Skips current iteration
+
+
+----------------------------------------
+8. INFINITE LOOP
+
+Definition:
+Loop that never ends
+
+Example:
+for(;;){
+}
+
+Practice:
+---------
+
+1. PRINT 1 TO 50
+for(int i=1;i<=50;i++){
+    System.out.println(i);
+}
+
+2. EVEN NUMBERS
+for(int i=1;i<=50;i++){
+    if(i%2==0) System.out.println(i);
+}
+
+3. ODD NUMBERS
+for(int i=1;i<=50;i++){
+    if(i%2!=0) System.out.println(i);
+}
+
+4. SUM OF 1 TO 10
+int sum=0;
+for(int i=1;i<=10;i++){
+    sum+=i;
+}
+System.out.println(sum);
+
+5. MULTIPLICATION TABLE
+int n=5;
+for(int i=1;i<=10;i++){
+    System.out.println(n*i);
+}
+
+6. REVERSE 10 TO 1
+for(int i=10;i>=1;i--){
+    System.out.println(i);
+}
+
+7. EVEN/ODD CHECK
+int n=7;
+if(n%2==0) System.out.println("Even");
+
+8. LARGEST OF 3
+int a=10,b=20,c=15;
+if(a>b && a>c) System.out.println(a);
+
+9. COUNT DIGITS
+int num=123,count=0;
+while(num>0){
+    count++;
+    num/=10;
+}
+
+10. CALCULATOR
+int a=10,b=5;
+System.out.println(a+b);
+System.out.println(a-b);
+System.out.println(a*b);
+System.out.println(a/b);
+System.out.println(a%b);
