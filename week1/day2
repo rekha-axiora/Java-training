@@ -1,0 +1,40 @@
+DAY 2 — PROCESS VS THREAD
+------------------------
+Introduction
+------------
+Programs run as processes, and processes contain threads.
+
+Basic Definitions:
+-----------------
+Process:
+--------
+Independent program in execution
+Has its own memory
+Thread:
+-------
+Smallest unit of execution
+Exists inside a process
+Shares memory with other threads
+  
+Differences:
+------------
+Feature	       Process	  Thread
+Memory	       Separate	  Shared
+Speed	         Slower	    Faster
+Communication	 Difficult	Easy
+  
+Process States:
+---------------
+New
+Ready
+Running
+Waiting
+Terminated
+  
+Multithreading Problems:
+------------------------
+Race Condition
+Deadlock
+Starvation
+Context Switching
+Switching CPU between processes/threads
