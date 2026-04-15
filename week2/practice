@@ -1,0 +1,475 @@
+Day 6-10 practice:
+--------------------
+
+----- 1. PRINT HELLO -----
+System.out.println("Hello");
+
+----- 2. PRINT NUMBERS 1–10 -----
+for(int i=1;i<=10;i++){
+    System.out.println(i);
+}
+
+----- 3. EVEN NUMBERS -----
+for(int i=1;i<=10;i++){
+    if(i%2==0) System.out.println(i);
+}
+
+----- 4. ODD NUMBERS -----
+for(int i=1;i<=10;i++){
+    if(i%2!=0) System.out.println(i);
+}
+
+----- 5. SUM 1–10 -----
+int sum=0;
+for(int i=1;i<=10;i++){
+    sum+=i;
+}
+System.out.println(sum);
+
+----- 6. MULTIPLICATION TABLE -----
+int n=5;
+for(int i=1;i<=10;i++){
+    System.out.println(n*i);
+}
+
+----- 7. SWAP NUMBERS -----
+int a=10,b=20,temp;
+temp=a; a=b; b=temp;
+
+----- 8. LARGEST OF 2 -----
+int a=10,b=20;
+if(a>b) System.out.println(a);
+else System.out.println(b);
+
+----- 9. LARGEST OF 3 -----
+int a=10,b=20,c=15;
+if(a>b && a>c) System.out.println(a);
+else if(b>c) System.out.println(b);
+else System.out.println(c);
+
+----- 10. EVEN/ODD -----
+int n=7;
+if(n%2==0) System.out.println("Even");
+
+----- 11. REVERSE NUMBER -----
+int num=123,rev=0;
+while(num>0){
+    rev=rev*10+num%10;
+    num/=10;
+}
+System.out.println(rev);
+
+----- 12. PALINDROME NUMBER -----
+int num=121,temp=num,rev=0;
+while(num>0){
+    rev=rev*10+num%10;
+    num/=10;
+}
+if(temp==rev) System.out.println("Palindrome");
+
+----- 13. COUNT DIGITS -----
+int num=1234,count=0;
+while(num>0){
+    count++;
+    num/=10;
+}
+System.out.println(count);
+
+----- 14. SUM OF DIGITS -----
+int num=123,sum=0;
+while(num>0){
+    sum+=num%10;
+    num/=10;
+}
+System.out.println(sum);
+
+----- 15. PRIME NUMBER -----
+int n=7,flag=0;
+for(int i=2;i<n;i++){
+    if(n%i==0) flag=1;
+}
+if(flag==0) System.out.println("Prime");
+
+----- 16. FACTORIAL -----
+int n=5,f=1;
+for(int i=1;i<=n;i++){
+    f*=i;
+}
+System.out.println(f);
+
+----- 17. FIBONACCI -----
+int a=0,b=1;
+for(int i=1;i<=5;i++){
+    System.out.println(a);
+    int c=a+b;
+    a=b;
+    b=c;
+}
+
+----- 18. POWER -----
+int n=2,p=3,res=1;
+for(int i=1;i<=p;i++){
+    res*=n;
+}
+System.out.println(res);
+
+----- 19. GCD -----
+int a=10,b=5;
+while(b!=0){
+    int t=b;
+    b=a%b;
+    a=t;
+}
+System.out.println(a);
+
+----- 20. ARRAY PRINT -----
+int arr[]={1,2,3};
+for(int i=0;i<arr.length;i++){
+    System.out.println(arr[i]);
+}
+
+----- 21. ARRAY SUM -----
+int sum=0;
+for(int i=0;i<arr.length;i++){
+    sum+=arr[i];
+}
+
+----- 22. ARRAY MAX -----
+int max=arr[0];
+for(int i=0;i<arr.length;i++){
+    if(arr[i]>max) max=arr[i];
+}
+
+----- 23. ARRAY MIN -----
+int min=arr[0];
+for(int i=0;i<arr.length;i++){
+    if(arr[i]<min) min=arr[i];
+}
+
+----- 24. REVERSE ARRAY -----
+for(int i=arr.length-1;i>=0;i--){
+    System.out.println(arr[i]);
+}
+
+----- 25. SEARCH ELEMENT -----
+int key=2;
+for(int i=0;i<arr.length;i++){
+    if(arr[i]==key) System.out.println("Found");
+}
+
+----- 26. COUNT EVEN ARRAY -----
+int count=0;
+for(int i=0;i<arr.length;i++){
+    if(arr[i]%2==0) count++;
+}
+
+----- 27. STRING LENGTH -----
+String s="java";
+System.out.println(s.length());
+
+----- 28. STRING REVERSE -----
+String rev="";
+for(int i=s.length()-1;i>=0;i--){
+    rev+=s.charAt(i);
+}
+
+----- 29. PALINDROME STRING -----
+if(s.equals(rev)) System.out.println("Palindrome");
+
+----- 30. COUNT VOWELS -----
+int count=0;
+for(int i=0;i<s.length();i++){
+    char c=s.charAt(i);
+    if(c=='a'||c=='e'||c=='i'||c=='o'||c=='u') count++;
+}
+
+----- 31. UPPERCASE -----
+System.out.println(s.toUpperCase());
+
+----- 32. LOWERCASE -----
+System.out.println(s.toLowerCase());
+
+----- 33. REMOVE SPACES -----
+String s="hello world";
+System.out.println(s.replace(" ",""));
+
+----- 34. COUNT WORDS -----
+String s="hello java";
+System.out.println(s.split(" ").length);
+
+----- 35. CONCAT -----
+String a="Hi",b="Java";
+System.out.println(a+b);
+
+----- 36. COMPARE -----
+System.out.println(a.equals(b));
+
+----- 37. METHOD ADD -----
+static int add(int a,int b){
+    return a+b;
+}
+
+----- 38. METHOD EVEN -----
+static void check(int n){
+    if(n%2==0) System.out.println("Even");
+}
+
+----- 39. METHOD FACTORIAL -----
+static int fact(int n){
+    int f=1;
+    for(int i=1;i<=n;i++) f*=i;
+    return f;
+}
+
+----- 40. RECURSION FACTORIAL -----
+static int fact(int n){
+    if(n==1) return 1;
+    return n*fact(n-1);
+}
+
+----- 41. PRINT USING METHOD -----
+static void print(){
+    System.out.println("Hello");
+}
+
+----- 42. CLASS OBJECT -----
+class A{
+    int x=10;
+}
+
+----- 43. OBJECT CREATE -----
+A obj=new A();
+System.out.println(obj.x);
+
+----- 44. CONSTRUCTOR -----
+class A{
+    A(){
+        System.out.println("Called");
+    }
+}
+
+----- 45. SIMPLE IF -----
+if(true) System.out.println("Yes");
+
+----- 46. WHILE LOOP -----
+int i=1;
+while(i<=5){
+    i++;
+}
+
+----- 47. DO WHILE -----
+int i=1;
+do{
+    i++;
+}while(i<=5);
+
+----- 48. BREAK -----
+for(int i=1;i<=5;i++){
+    if(i==3) break;
+}
+
+----- 49. CONTINUE -----
+for(int i=1;i<=5;i++){
+    if(i==3) continue;
+}
+
+----- 50. INFINITE LOOP -----
+for(;;){
+}
+
+----- 51. SWAP WITHOUT TEMP -----
+int a=10,b=20;
+a=a+b;
+b=a-b;
+a=a-b;
+
+----- 52. REVERSE NUMBER (EDGE CASE) -----
+int num=1200,rev=0;
+while(num!=0){
+    int r=num%10;
+    rev=rev*10+r;
+    num/=10;
+}
+System.out.println(rev); // removes trailing zeros
+
+----- 53. PALINDROME STRING (IGNORE CASE) -----
+String s="Madam";
+String rev="";
+for(int i=s.length()-1;i>=0;i--){
+    rev+=s.charAt(i);
+}
+if(s.equalsIgnoreCase(rev)){
+    System.out.println("Palindrome");
+}
+
+----- 54. PRIME OPTIMIZED -----
+int n=17,flag=0;
+for(int i=2;i<=Math.sqrt(n);i++){
+    if(n%i==0){
+        flag=1;
+        break;
+    }
+}
+if(flag==0) System.out.println("Prime");
+
+----- 55. COUNT FREQUENCY IN ARRAY -----
+int arr[]={1,2,2,3};
+for(int i=0;i<arr.length;i++){
+    int count=1;
+    for(int j=i+1;j<arr.length;j++){
+        if(arr[i]==arr[j]){
+            count++;
+        }
+    }
+    System.out.println(arr[i]+"="+count);
+}
+
+----- 56. SECOND LARGEST -----
+int arr[]={1,5,3,9,2};
+int max=arr[0],second=arr[0];
+
+for(int i=0;i<arr.length;i++){
+    if(arr[i]>max){
+        second=max;
+        max=arr[i];
+    }
+}
+System.out.println(second);
+
+----- 57. REMOVE DUPLICATES ARRAY -----
+int arr[]={1,2,2,3};
+for(int i=0;i<arr.length;i++){
+    int flag=0;
+    for(int j=0;j<i;j++){
+        if(arr[i]==arr[j]) flag=1;
+    }
+    if(flag==0) System.out.println(arr[i]);
+}
+
+----- 58. STRING CHARACTER COUNT -----
+String s="java";
+for(int i=0;i<s.length();i++){
+    int count=1;
+    for(int j=i+1;j<s.length();j++){
+        if(s.charAt(i)==s.charAt(j)){
+            count++;
+        }
+    }
+    System.out.println(s.charAt(i)+"="+count);
+}
+
+----- 59. ANAGRAM CHECK -----
+String a="listen",b="silent";
+char arr1[]=a.toCharArray();
+char arr2[]=b.toCharArray();
+java.util.Arrays.sort(arr1);
+java.util.Arrays.sort(arr2);
+
+if(java.util.Arrays.equals(arr1,arr2)){
+    System.out.println("Anagram");
+}
+
+----- 60. FIBONACCI USING RECURSION -----
+static int fib(int n){
+    if(n<=1) return n;
+    return fib(n-1)+fib(n-2);
+}
+
+----- 61. FACTORIAL WITH ERROR CHECK -----
+int n=-5;
+if(n<0){
+    System.out.println("Invalid");
+}else{
+    int f=1;
+    for(int i=1;i<=n;i++){
+        f*=i;
+    }
+    System.out.println(f);
+}
+
+----- 62. STRING WITHOUT BUILT-IN REVERSE -----
+String s="java";
+char arr[]=s.toCharArray();
+
+for(int i=arr.length-1;i>=0;i--){
+    System.out.print(arr[i]);
+}
+
+----- 63. COUNT WORDS WITHOUT SPLIT -----
+String s="hello java world";
+int count=1;
+
+for(int i=0;i<s.length();i++){
+    if(s.charAt(i)==' ') count++;
+}
+System.out.println(count);
+
+----- 64. SUM OF ARRAY EVEN INDEX -----
+int arr[]={1,2,3,4};
+int sum=0;
+
+for(int i=0;i<arr.length;i+=2){
+    sum+=arr[i];
+}
+
+----- 65. CHECK ARMSTRONG -----
+int num=153,temp=num,sum=0;
+while(num>0){
+    int r=num%10;
+    sum+=r*r*r;
+    num/=10;
+}
+if(temp==sum) System.out.println("Armstrong");
+
+----- 66. SORT ARRAY (BUBBLE SORT) -----
+int arr[]={5,3,1};
+for(int i=0;i<arr.length;i++){
+    for(int j=0;j<arr.length-1;j++){
+        if(arr[j]>arr[j+1]){
+            int t=arr[j];
+            arr[j]=arr[j+1];
+            arr[j+1]=t;
+        }
+    }
+}
+
+----- 67. FIND DUPLICATES -----
+int arr[]={1,2,2,3};
+for(int i=0;i<arr.length;i++){
+    for(int j=i+1;j<arr.length;j++){
+        if(arr[i]==arr[j]){
+            System.out.println(arr[i]);
+        }
+    }
+}
+
+----- 68. STRING REMOVE DUPLICATES -----
+String s="program";
+String result="";
+
+for(int i=0;i<s.length();i++){
+    if(result.indexOf(s.charAt(i))==-1){
+        result+=s.charAt(i);
+    }
+}
+System.out.println(result);
+
+----- 69. COUNT UPPERCASE -----
+String s="JavaCODE";
+int count=0;
+
+for(int i=0;i<s.length();i++){
+    if(Character.isUpperCase(s.charAt(i))){
+        count++;
+    }
+}
+
+----- 70. SUM OF MATRIX -----
+int arr[][]={{1,2},{3,4}};
+int sum=0;
+
+for(int i=0;i<2;i++){
+    for(int j=0;j<2;j++){
+        sum+=arr[i][j];
+    }
+}
