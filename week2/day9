@@ -1,0 +1,102 @@
+
+
+============================
+DAY 9 — METHODS & RECURSION
+============================
+
+1. METHOD
+
+Definition:
+A method is a block of code that performs a specific task.
+
+Example:
+static int add(int a,int b){
+    return a+b;
+}
+
+
+----------------------------------------
+2. TYPES OF METHODS
+
+- With return type
+- Without return type
+- With parameters
+- Without parameters
+
+
+----------------------------------------
+3. PASS BY VALUE (IMPORTANT)
+
+Definition:
+Java always passes copy of value
+
+Example:
+void change(int x){
+    x = 100;
+}
+// original not changed
+
+
+----------------------------------------
+4. RECURSION
+
+Definition:
+Function calling itself
+
+Key Points:
+- Must have base case
+- Avoid infinite calls
+
+
+----------------------------------------
+5. FACTORIAL USING RECURSION
+
+static int fact(int n){
+    if(n==1) return 1;
+    return n * fact(n-1);
+}
+
+
+----------------------------------------
+6. RECURSION FLOW (IMPORTANT)
+
+fact(3)
+= 3 * fact(2)
+= 3 * (2 * fact(1))
+= 3 * (2 * 1)
+= 6
+
+
+Tasks:
+------
+
+1. METHOD ADD
+static int add(int a,int b){
+    return a+b;
+}
+
+2. METHOD EVEN CHECK
+static void check(int n){
+    if(n%2==0) System.out.println("Even");
+}
+
+3. METHOD FACTORIAL
+static int fact(int n){
+    int f=1;
+    for(int i=1;i<=n;i++){
+        f*=i;
+    }
+    return f;
+}
+
+4. RECURSION FACTORIAL
+static int fact(int n){
+    if(n==1) return 1;
+    return n*fact(n-1);
+}
+
+5. METHOD PRINT
+static void print(){
+    System.out.println("Hello");
+}
+
