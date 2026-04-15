@@ -1,0 +1,34 @@
+DAY 3 — HOW CODE RUNS
+--------------------
+Execution Flow
+--------------
+.java → javac → .class → JVM → Output
+
+Compiler
+-------
+Converts source code into bytecode
+
+JVM (Java Virtual Machine)
+--------------------------
+Runs bytecode
+Platform independent
+
+JVM Components
+--------------
+Class Loader
+Bytecode Verifier
+Execution Engine
+  
+Memory Areas
+------------  
+Heap → Objects
+Stack → Method calls
+Metaspace → Class info
+
+JIT Compiler
+-------------
+Converts bytecode to machine code for faster execution
+  
+Garbage Collection
+------------------
+Removes unused objects
