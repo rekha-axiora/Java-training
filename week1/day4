@@ -1,0 +1,42 @@
+DAY 4 — LINUX FILESYSTEM & COMMANDS
+-----------------------------------
+Linux File System:
+------------------
+Directory	  Purpose
+/	          Root
+/home	      User files
+/etc	      Config files
+/var	      Logs
+
+Basic Commands:
+--------------
+ls → list files
+cd → change directory
+pwd → current path
+mkdir → create folder
+rm → delete files
+  
+Intermediate Commands
+---------------------
+cat → view file
+grep → search text
+find → search files
+top → system usage
+ps → running processes
+  
+Permissions
+-----------
+r → read
+w → write
+x → execute
+
+Example:
+rwxr-xr-x
+
+chmod
+-----
+chmod 755 file.sh
+
+chown
+-----
+Change file owner
