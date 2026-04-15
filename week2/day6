@@ -1,0 +1,64 @@
+DAY 6 — Syntax, Variables, Basics
+----------------------------------
+Java Structure
+--------------
+class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello");
+    }
+}
+
+Variables:
+----------
+int 
+double 
+char 
+String 
+boolean 
+byte
+float
+short
+
+Primitive vs Reference
+----------------------
+Primitive → stores value
+Reference → stores address
+  
+Example: 
+Primitive :
+------------
+int a = 10;
+int b = a;
+b = 20;
+System.out.println(a); // 10
+
+Reference:
+-----------
+int arr1[] = {1,2};
+int arr2[] = arr1;
+arr2[0] = 99;
+System.out.println(arr1[0]); // 99 ❗
+
+String Immutability:
+-------------------
+String s = "Hello";
+s.concat(" World");
+System.out.println(s); // Hello
+
+== vs equals():
+---------------
+String a = "Hi";
+String b = "Hi";
+System.out.println(a == b); // true
+
+String x = new String("Hi");
+String y = new String("Hi");
+System.out.println(x == y); // false ❗
+System.out.println(x.equals(y)); // true
+
+Example:
+-------
+System.out.println(10 + 20 + "Java"); // 30Java
+System.out.println("Java" + 10 + 20); // Java1020 ❗
+
+  
