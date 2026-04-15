@@ -1,5 +1,14 @@
 DAY 6 — Syntax, Variables, Basics
 ----------------------------------
+WHAT IS JAVA?
+-------------
+Java is a high-level, object-oriented programming language used to build applications.
+
+Key Features:
+- Platform independent (Write Once, Run Anywhere)
+- Object-Oriented
+- Secure and Robust
+
 Java Structure
 --------------
 class Main {
@@ -8,8 +17,20 @@ class Main {
     }
 }
 
+Definitions:
+- class → blueprint/container for code
+- main() → entry point of program
+- public → accessible everywhere
+- static → no object needed
+- void → no return value
+
 Variables:
 ----------
+Definition:
+A variable is a container used to store data.
+
+Types:
+-----
 int 
 double 
 char 
@@ -19,10 +40,30 @@ byte
 float
 short
 
+TYPE CASTING
+------------
+Definition:
+Converting one data type to another
+
+Implicit:
+int → double
+
+Explicit:
+double → int
+
+Example:
+double x = 10.5;
+int y = (int)x;  // 10
+
 Primitive vs Reference
 ----------------------
-Primitive → stores value
-Reference → stores address
+Primitive:
+- Stores actual value
+- Stored in stack
+
+Reference:
+- Stores address
+- Points to heap
   
 Example: 
 Primitive :
@@ -41,12 +82,17 @@ System.out.println(arr1[0]); // 99 ❗
 
 String Immutability:
 -------------------
+Definition:
+String cannot be changed once created.
 String s = "Hello";
 s.concat(" World");
 System.out.println(s); // Hello
 
 == vs equals():
 ---------------
+== → compares memory reference
+equals() → compares content
+
 String a = "Hi";
 String b = "Hi";
 System.out.println(a == b); // true
@@ -61,4 +107,31 @@ Example:
 System.out.println(10 + 20 + "Java"); // 30Java
 System.out.println("Java" + 10 + 20); // Java1020 ❗
 
-  
+
+Tasks:
+------
+1. PRINT YOUR NAME
+System.out.println("Rekha");
+
+2. ADD TWO NUMBERS
+int a=10,b=20;
+System.out.println(a+b);
+
+3. SWAP TWO NUMBERS
+int a=10,b=20,temp;
+temp=a;
+a=b;
+b=temp;
+
+4. SIMPLE INTEREST
+int p=1000,r=5,t=2;
+int si=(p*r*t)/100;
+System.out.println(si);
+
+5. INT TO DOUBLE
+int a=10;
+double b=a;
+
+6. DOUBLE TO INT
+double x=10.5;
+int y=(int)x;
