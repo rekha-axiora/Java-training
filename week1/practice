@@ -1,0 +1,203 @@
+==============================
+LINUX COMMANDS
+==============================
+
+----- FILE & DIRECTORY -----
+1. ls              - list files
+2. ls -la          - list all files (detailed)
+3. pwd             - print current directory
+4. cd              - change directory
+5. cd ..           - move up one directory
+6. mkdir dir       - create directory
+7. rmdir dir       - remove empty directory
+8. rm file         - delete file
+9. rm -r dir       - delete directory
+10. touch file     - create empty file
+11. cp a b         - copy file
+12. mv a b         - move/rename file
+
+----- FILE VIEW -----
+13. cat file       - display file content
+14. less file      - view file page by page
+15. head file      - first 10 lines
+16. tail file      - last 10 lines
+17. tail -f file   - live log view
+
+----- SEARCH -----
+18. find . -name "*.txt"    - find files
+19. grep "text" file        - search text
+20. grep -i "text" file     - ignore case
+
+----- SYSTEM -----
+21. top            - system monitor
+22. ps aux         - running processes
+23. kill pid       - kill process
+24. kill -9 pid    - force kill
+25. df -h          - disk usage
+26. du -sh         - folder size
+27. free -m        - memory usage
+28. uptime         - system uptime
+
+----- PERMISSIONS -----
+29. chmod 755 file - change permissions
+30. chown user file - change owner
+31. ls -l          - show permissions
+
+----- NETWORK -----
+32. ping google.com     - check connection
+33. curl url            - fetch data
+34. wget url            - download file
+35. ifconfig / ip a     - network info
+
+----- ARCHIVE -----
+36. tar -cvf file.tar dir
+37. tar -xvf file.tar
+38. zip file.zip file
+39. unzip file.zip
+
+----- USER -----
+40. whoami         - current user
+41. who            - logged users
+42. passwd         - change password
+
+----- DISK & FILE -----
+43. df             - disk space
+44. du             - file size
+45. file file.txt  - file type
+
+----- PROCESS -----
+46. ps             - process status
+47. top            - live processes
+48. htop           - advanced monitor
+
+----- MISC -----
+49. clear          - clear terminal
+50. history        - command history
+51. echo "text"    - print text
+52. date           - show date
+53. cal            - calendar
+
+
+==============================
+SHELL SCRIPT PRACTICE
+==============================
+
+----- SCRIPT 1: HELLO -----
+echo "Hello World"
+
+
+----- SCRIPT 2: PRINT NAME -----
+echo "My name is Rekha"
+
+
+----- SCRIPT 3: PRINT NUMBERS 1 TO 10 -----
+for i in {1..10}
+do
+  echo $i
+done
+
+
+----- SCRIPT 4: PRINT EVEN NUMBERS -----
+for i in {1..10}
+do
+  if [ $((i%2)) -eq 0 ]
+  then
+    echo $i
+  fi
+done
+
+----- SCRIPT 5: PRINT ODD NUMBERS -----
+for i in {1..10}
+do
+  if [ $((i%2)) -ne 0 ]
+  then
+    echo $i
+  fi
+done
+
+
+----- SCRIPT 6: SUM OF 1 TO 10 -----
+sum=0
+for i in {1..10}
+do
+  sum=$((sum+i))
+done
+echo $sum
+
+----- SCRIPT 7: USER INPUT -----
+echo "Enter your name:"
+read name
+echo "Hello $name"
+
+----- SCRIPT 8: ADD TWO NUMBERS -----
+echo "Enter two numbers:"
+read a b
+sum=$((a+b))
+echo "Sum = $sum"
+
+----- SCRIPT 9: SIMPLE IF CONDITION -----
+echo "Enter number:"
+read num
+if [ $num -gt 10 ]
+then
+  echo "Greater than 10"
+else
+  echo "10 or less"
+fi
+
+----- SCRIPT 10: PRINT TABLE -----
+echo "Enter number:"
+read n
+for i in {1..5}
+do
+  echo "$n x $i = $((n*i))"
+done
+
+----- SCRIPT 11: COUNT FILES -----
+#count=$(ls | wc -l)
+echo "Files: $count"
+
+----- SCRIPT 12: CURRENT DATE -----
+date
+
+----- SCRIPT 13: CURRENT USER -----
+whoami
+
+----- SCRIPT 14: SHOW CURRENT DIRECTORY -----
+pwd
+
+----- SCRIPT 15: LIST FILES -----
+ls
+
+----- SCRIPT 16: CREATE FILE -----
+touch test.txt
+echo "File created"
+
+----- SCRIPT 17: WRITE TO FILE -----
+echo "Hello Linux" > file.txt
+
+----- SCRIPT 18: READ FILE -----
+cat file.txt
+
+----- SCRIPT 19: CHECK FILE EXISTS -----
+if [ -f file.txt ]
+then
+  echo "File exists"
+else
+  echo "File not found"
+fi
+
+----- SCRIPT 20: SIMPLE LOOP MESSAGE -----
+for i in {1..5}
+do
+  echo "Hello"
+done
+
+----- SCRIPT 21: COUNT FROM 5 TO 1 -----
+for i in {5..1}
+do
+  echo $i
+done
+
+----- SCRIPT 22: PRINT LINE -----
+echo "-------------------"
