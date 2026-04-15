@@ -1,0 +1,51 @@
+DAY 1 — COMPUTER ARCHITECTURE
+--------------------------------
+Introduction :
+--------------
+Computer architecture defines how hardware components work together to execute programs.
+  
+Basic Components :
+-------------------
+1. CPU (Central Processing Unit):
+Brain of the computer
+Executes instructions
+Performs calculations
+  
+2. RAM (Random Access Memory):
+Temporary memory
+Stores currently running programs
+Volatile (data lost when power off)
+  
+3. Cache Memory:
+Very fast memory inside CPU
+Stores frequently used data
+Types: L1, L2, L3
+  
+4. Disk (HDD/SSD)
+Permanent storage
+Stores OS, files, applications
+  
+Data Flow:
+-----------
+Disk → RAM → Cache → CPU
+
+Memory Hierarchy:
+-----------------
+Cache (fastest, smallest)
+RAM (medium)
+Disk (slowest, largest)
+  
+Why Cache?
+-----------
+Reduces CPU waiting time
+Improves performance
+  
+CPU Internals:
+--------------
+ALU (Arithmetic Logic Unit)
+Control Unit
+Registers
+Virtual Memory
+Uses disk as extra RAM
+Context Switching
+CPU switches between tasks
