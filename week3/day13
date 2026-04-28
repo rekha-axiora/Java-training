@@ -1,0 +1,188 @@
+=========================
+DAY 13 — Inheritance
+=========================
+
+DEFINITION:
+Inheritance allows one class to acquire properties of another class.
+
+SYNTAX:
+class Parent {}
+class Child extends Parent {}
+
+EXAMPLE:
+class Vehicle {
+    void run() {
+        System.out.println("Vehicle running");
+    }
+}
+
+class Bike extends Vehicle {
+    void speed() {
+        System.out.println("High speed");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Bike b = new Bike();
+        b.run();
+        b.speed();
+    }
+}
+
+TYPES:
+Single inheritance
+Multilevel inheritance
+Hierarchical inheritance
+
+  MULTILEVEL EXAMPLE:
+class A {
+    void showA() {
+        System.out.println("A");
+    }
+}
+
+class B extends A {
+    void showB() {
+        System.out.println("B");
+    }
+}
+
+class C extends B {
+    void showC() {
+        System.out.println("C");
+    }
+}
+
+=========================
+METHOD OVERLOADING
+=========================
+Method Overloading means multiple methods in the same class with the same name but different parameters.
+
+Key Points:
+Same method name
+Different parameters (type / number / order)
+Happens in same class
+Compile-time polymorphism
+  
+Example:
+class Calculator {
+
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    int add(int a, int b, int c) {
+        return a + b + c;
+    }
+
+    double add(double a, double b) {
+        return a + b;
+    }
+}
+
+Why used?
+Improves code readability
+Same function name for similar operations
+Flexibility
+  
+=========================
+METHOD OVERRIDING
+=========================
+Method Overriding means child class gives its own implementation of a method already defined in parent class.
+
+Key Points:
+Same method name
+Same parameters
+Requires inheritance
+Runtime polymorphism
+  
+Example:
+class Animal {
+    void sound() {
+        System.out.println("Animal sound");
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal a = new Dog();
+        a.sound();
+    }
+}
+
+Why used?
+To change or extend parent behavior
+Real-world customization
+
+=========================
+WHY MULTIPLE INHERITANCE NOT ALLOWED IN JAVA
+=========================
+Multiple inheritance means one class inherits from more than one class.
+
+Java does NOT support multiple inheritance using classes.
+
+Example:
+
+class A {}
+class B {}
+class C extends A, B {} // ❌ Not allowed
+
+REASON 1 — DIAMOND PROBLEM
+
+If both parent classes have same method:
+
+class A {
+    void show() {
+        System.out.println("A");
+    }
+}
+
+class B {
+    void show() {
+        System.out.println("B");
+    }
+}
+
+Now:
+If Java allowed:
+
+class C extends A, B {
+    // confusion: which show()?
+}
+
+Problem: ambiguity (confusion)
+
+This is called Diamond Problem
+  
+REASON 2 — AMBIGUITY
+Compiler cannot decide which parent method to call
+Leads to runtime confusion
+JAVA SOLUTION:
+
+Java avoids this problem by:
+
+Allowing single inheritance (class)
+Allowing multiple inheritance using interfaces
+
+INTERFACE SOLUTION:
+interface A {
+    void show();
+}
+
+interface B {
+    void show();
+}
+
+class C implements A, B {
+    public void show() {
+        System.out.println("Resolved ambiguity");
+    }
+}
