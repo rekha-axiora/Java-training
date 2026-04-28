@@ -1,0 +1,33 @@
+=========================
+DAY 19 — OS BASICS
+=========================
+PROCESS vs THREAD
+Process → Independent program
+Thread → Part of process
+
+CPU SCHEDULING
+Decides which process runs first.
+
+Types:
+FCFS (First Come First Serve)
+SJF (Shortest Job First)
+Round Robin
+  
+MEMORY MANAGEMENT
+
+How OS manages RAM.
+
+Concepts:
+
+Stack memory
+Heap memory
+  
+SYNCHRONIZATION
+Used when multiple threads access shared data.
+
+Problem:
+Race condition
+
+Solution:
+Synchronization
+Locks
