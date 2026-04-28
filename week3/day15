@@ -1,0 +1,92 @@
+=========================
+📘 DAY 15 — MINI PROJECT (Library System)
+=========================
+FEATURES:
+Add Book
+View Books
+Issue Book
+Return Book
+  
+BOOK CLASS:
+class Book {
+    String title;
+    boolean isIssued;
+
+    Book(String title) {
+        this.title = title;
+        this.isIssued = false;
+    }
+}
+
+LIBRARY CLASS:
+import java.util.ArrayList;
+
+class Library {
+    ArrayList<Book> books = new ArrayList<>();
+
+    void addBook(String title) {
+        books.add(new Book(title));
+    }
+
+    void viewBooks() {
+        for (Book b : books) {
+            System.out.println(b.title + " | Issued: " + b.isIssued);
+        }
+    }
+
+    void issueBook(String title) {
+        for (Book b : books) {
+            if (b.title.equals(title) && !b.isIssued) {
+                b.isIssued = true;
+                System.out.println("Book Issued");
+                return;
+            }
+        }
+        System.out.println("Book not available");
+    }
+
+    void returnBook(String title) {
+        for (Book b : books) {
+            if (b.title.equals(title)) {
+                b.isIssued = false;
+                System.out.println("Book Returned");
+                return;
+            }
+        }
+    }
+}
+
+MAIN CLASS:
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Library lib = new Library();
+        Scanner sc = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\n1.Add 2.View 3.Issue 4.Return 5.Exit");
+            int choice = sc.nextInt();
+            sc.nextLine();
+
+            if (choice == 1) {
+                System.out.print("Enter book: ");
+                lib.addBook(sc.nextLine());
+            }
+            else if (choice == 2) {
+                lib.viewBooks();
+            }
+            else if (choice == 3) {
+                System.out.print("Enter book: ");
+                lib.issueBook(sc.nextLine());
+            }
+            else if (choice == 4) {
+                System.out.print("Enter book: ");
+                lib.returnBook(sc.nextLine());
+            }
+            else {
+                break;
+            }
+        }
+    }
+}
