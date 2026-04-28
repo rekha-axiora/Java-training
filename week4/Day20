@@ -1,0 +1,1508 @@
+=========================
+1. TwoSum.java
+=========================
+import java.util.*;
+
+public class TwoSum {
+    public static void main(String[] args) {
+        int[] arr = {2,7,11,15};
+        int target = 9;
+
+        HashMap<Integer,Integer> map = new HashMap<>();
+
+        for(int i=0;i<arr.length;i++){
+            int diff = target - arr[i];
+
+            if(map.containsKey(diff)){
+                System.out.println("Indices: " + map.get(diff) + " " + i);
+                return;
+            }
+            map.put(arr[i], i);
+        }
+    }
+}
+=========================
+2. ReverseArray.java
+=========================
+import java.util.*;
+
+public class ReverseArray {
+    public static void main(String[] args) {
+        int[] arr = {1,2,3,4,5};
+
+        int l=0, r=arr.length-1;
+
+        while(l<r){
+            int temp=arr[l];
+            arr[l]=arr[r];
+            arr[r]=temp;
+            l++; r--;
+        }
+
+        System.out.println(Arrays.toString(arr));
+    }
+}
+=========================
+3. MaxElement.java
+=========================
+public class MaxElement {
+    public static void main(String[] args) {
+        int[] arr = {3,5,2,9,1};
+
+        int max = arr[0];
+
+        for(int x:arr){
+            if(x>max) max=x;
+        }
+
+        System.out.println("Max: " + max);
+    }
+}
+=========================
+4. MinElement.java
+=========================
+public class MinElement {
+    public static void main(String[] args) {
+        int[] arr = {3,5,2,9,1};
+
+        int min = arr[0];
+
+        for(int x:arr){
+            if(x<min) min=x;
+        }
+
+        System.out.println("Min: " + min);
+    }
+}
+=========================
+5. SumOfArray.java
+=========================
+public class SumOfArray {
+    public static void main(String[] args) {
+        int[] arr = {1,2,3,4};
+
+        int sum = 0;
+
+        for(int x:arr){
+            sum += x;
+        }
+
+        System.out.println("Sum: " + sum);
+    }
+}
+=========================
+6. Kadane.java
+=========================
+public class Kadane {
+    public static void main(String[] args) {
+        int[] arr = {-2,1,-3,4,-1,2,1,-5,4};
+
+        int sum = 0, max = arr[0];
+
+        for(int x:arr){
+            sum += x;
+            if(sum > max) max = sum;
+            if(sum < 0) sum = 0;
+        }
+
+        System.out.println("Max Subarray Sum: " + max);
+    }
+}
+=========================
+7. RemoveDuplicates.java
+=========================
+import java.util.*;
+
+public class RemoveDuplicates {
+    public static void main(String[] args) {
+        int[] arr = {1,2,2,3,4};
+
+        HashSet<Integer> set = new HashSet<>();
+
+        for(int x:arr){
+            set.add(x);
+        }
+
+        System.out.println(set);
+    }
+}
+=========================
+8. RotateArray.java
+=========================
+import java.util.*;
+
+public class RotateArray {
+    public static void main(String[] args) {
+        int[] arr = {1,2,3,4,5};
+        int k = 2;
+
+        for(int i=0;i<k;i++){
+            int last = arr[arr.length-1];
+
+            for(int j=arr.length-1;j>0;j--){
+                arr[j] = arr[j-1];
+            }
+
+            arr[0] = last;
+        }
+
+        System.out.println(Arrays.toString(arr));
+    }
+}
+=========================
+9. SecondLargest.java
+=========================
+public class SecondLargest {
+    public static void main(String[] args) {
+        int[] arr = {10,20,5,30};
+
+        int first = Integer.MIN_VALUE;
+        int second = Integer.MIN_VALUE;
+
+        for(int x:arr){
+            if(x > first){
+                second = first;
+                first = x;
+            } else if(x > second && x != first){
+                second = x;
+            }
+        }
+
+        System.out.println("Second Largest: " + second);
+    }
+}
+=========================
+10. CountEven.java
+=========================
+public class CountEven {
+    public static void main(String[] args) {
+        int[] arr = {1,2,3,4,6};
+
+        int count = 0;
+
+        for(int x:arr){
+            if(x % 2 == 0) count++;
+        }
+
+        System.out.println("Even Count: " + count);
+    }
+}
+=========================
+11. PrefixSum.java
+=========================
+import java.util.*;
+
+public class PrefixSum {
+    public static void main(String[] args) {
+        int[] arr = {1,2,3,4};
+
+        int[] prefix = new int[arr.length];
+
+        prefix[0] = arr[0];
+
+        for(int i=1;i<arr.length;i++){
+            prefix[i] = prefix[i-1] + arr[i];
+        }
+
+        System.out.println(Arrays.toString(prefix));
+    }
+}
+=========================
+12. SubarraySumK.java
+=========================
+import java.util.*;
+
+public class SubarraySumK {
+    public static void main(String[] args) {
+        int[] arr = {1,2,3};
+        int k = 3;
+
+        int count = 0;
+
+        for(int i=0;i<arr.length;i++){
+            int sum = 0;
+
+            for(int j=i;j<arr.length;j++){
+                sum += arr[j];
+
+                if(sum == k) count++;
+            }
+        }
+
+        System.out.println("Subarrays: " + count);
+    }
+}
+=========================
+13. MergeArrays.java
+=========================
+import java.util.*;
+
+public class MergeArrays {
+    public static void main(String[] args) {
+        int[] a = {1,3,5};
+        int[] b = {2,4,6};
+
+        int[] c = new int[a.length + b.length];
+
+        int i=0,j=0,k=0;
+
+        while(i<a.length && j<b.length){
+            if(a[i] < b[j]) c[k++] = a[i++];
+            else c[k++] = b[j++];
+        }
+
+        while(i<a.length) c[k++] = a[i++];
+        while(j<b.length) c[k++] = b[j++];
+
+        System.out.println(Arrays.toString(c));
+    }
+}
+=========================
+14. Intersection.java
+=========================
+import java.util.*;
+
+public class Intersection {
+    public static void main(String[] args) {
+        int[] a = {1,2,3,4};
+        int[] b = {3,4,5};
+
+        HashSet<Integer> set = new HashSet<>();
+        HashSet<Integer> result = new HashSet<>();
+
+        for(int x:a) set.add(x);
+
+        for(int x:b){
+            if(set.contains(x)){
+                result.add(x);
+            }
+        }
+
+        System.out.println(result);
+    }
+}
+=========================
+15. MissingNumber.java
+=========================
+public class MissingNumber {
+    public static void main(String[] args) {
+        int[] arr = {1,2,4,5}; // missing 3
+
+        int n = arr.length + 1;
+
+        int total = n*(n+1)/2;
+
+        int sum = 0;
+
+        for(int x:arr){
+            sum += x;
+        }
+
+        System.out.println("Missing: " + (total - sum));
+    }
+}
+
+
+=========================
+1. InsertNode.java
+=========================
+💡 Logic:
+Create new node
+Traverse to last
+Attach it
+class Node {
+    int data;
+    Node next;
+
+    Node(int d){
+        data = d;
+    }
+}
+
+public class InsertNode {
+    public static void main(String[] args) {
+
+        Node head = new Node(10);
+        head.next = new Node(20);
+
+        Node newNode = new Node(30);
+
+        Node temp = head;
+        while(temp.next != null){
+            temp = temp.next;
+        }
+
+        temp.next = newNode;
+
+        print(head);
+    }
+
+    static void print(Node head){
+        while(head != null){
+            System.out.print(head.data + " ");
+            head = head.next;
+        }
+    }
+}
+=========================
+2. DeleteNode.java
+=========================
+💡 Logic:
+Find node before target
+Skip the target node
+public class DeleteNode {
+    public static void main(String[] args) {
+
+        Node head = new Node(10);
+        head.next = new Node(20);
+        head.next.next = new Node(30);
+
+        int key = 20;
+
+        Node temp = head;
+
+        while(temp.next != null && temp.next.data != key){
+            temp = temp.next;
+        }
+
+        if(temp.next != null){
+            temp.next = temp.next.next;
+        }
+
+        print(head);
+    }
+
+    static void print(Node head){
+        while(head != null){
+            System.out.print(head.data + " ");
+            head = head.next;
+        }
+    }
+}
+=========================
+3. ReverseLinkedList.java
+=========================
+💡 Logic:
+Reverse pointers using 3 variables:
+prev → curr → next
+public class ReverseLinkedList {
+    public static void main(String[] args) {
+
+        Node head = new Node(1);
+        head.next = new Node(2);
+        head.next.next = new Node(3);
+
+        Node prev = null;
+        Node curr = head;
+
+        while(curr != null){
+            Node next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        print(prev);
+    }
+
+    static void print(Node head){
+        while(head != null){
+            System.out.print(head.data + " ");
+            head = head.next;
+        }
+    }
+}
+=========================
+4. FindMiddle.java
+=========================
+💡 Logic:
+Slow moves 1 step
+Fast moves 2 steps
+public class FindMiddle {
+    public static void main(String[] args) {
+
+        Node head = new Node(1);
+        head.next = new Node(2);
+        head.next.next = new Node(3);
+        head.next.next.next = new Node(4);
+
+        Node slow = head;
+        Node fast = head;
+
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        System.out.println("Middle: " + slow.data);
+    }
+}
+=========================
+5. DetectCycle.java
+=========================
+💡 Logic:
+Floyd’s Algorithm (slow + fast)
+If they meet → cycle exists
+public class DetectCycle {
+    public static void main(String[] args) {
+
+        Node head = new Node(1);
+        head.next = new Node(2);
+        head.next.next = new Node(3);
+
+        head.next.next.next = head; // create cycle
+
+        Node slow = head;
+        Node fast = head;
+
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if(slow == fast){
+                System.out.println("Cycle detected");
+                return;
+            }
+        }
+
+        System.out.println("No cycle");
+    }
+}
+=========================
+6. LengthOfLL.java
+=========================
+💡 Logic:
+Traverse and count
+public class LengthOfLL {
+    public static void main(String[] args) {
+
+        Node head = new Node(1);
+        head.next = new Node(2);
+        head.next.next = new Node(3);
+
+        int count = 0;
+
+        while(head != null){
+            count++;
+            head = head.next;
+        }
+
+        System.out.println("Length: " + count);
+    }
+}
+=========================
+7. MergeTwoLL.java
+=========================
+💡 Logic:
+Compare two lists
+Add smaller element
+public class MergeTwoLL {
+    public static void main(String[] args) {
+
+        Node a = new Node(1);
+        a.next = new Node(3);
+
+        Node b = new Node(2);
+        b.next = new Node(4);
+
+        Node dummy = new Node(0);
+        Node temp = dummy;
+
+        while(a != null && b != null){
+            if(a.data < b.data){
+                temp.next = a;
+                a = a.next;
+            } else {
+                temp.next = b;
+                b = b.next;
+            }
+            temp = temp.next;
+        }
+
+        if(a != null) temp.next = a;
+        if(b != null) temp.next = b;
+
+        print(dummy.next);
+    }
+
+    static void print(Node head){
+        while(head != null){
+            System.out.print(head.data + " ");
+            head = head.next;
+        }
+    }
+}
+=========================
+8. PalindromeLL.java
+=========================
+💡 Logic:
+Convert to string / stack
+Compare
+import java.util.*;
+
+public class PalindromeLL {
+    public static void main(String[] args) {
+
+        Node head = new Node(1);
+        head.next = new Node(2);
+        head.next.next = new Node(1);
+
+        Stack<Integer> st = new Stack<>();
+
+        Node temp = head;
+
+        while(temp != null){
+            st.push(temp.data);
+            temp = temp.next;
+        }
+
+        temp = head;
+
+        while(temp != null){
+            if(temp.data != st.pop()){
+                System.out.println("Not Palindrome");
+                return;
+            }
+            temp = temp.next;
+        }
+
+        System.out.println("Palindrome");
+    }
+}
+=========================
+9. RemoveNthNode.java
+=========================
+💡 Logic:
+Use two pointers
+Move fast n steps ahead
+public class RemoveNthNode {
+    public static void main(String[] args) {
+
+        Node head = new Node(1);
+        head.next = new Node(2);
+        head.next.next = new Node(3);
+
+        int n = 2;
+
+        Node fast = head;
+        Node slow = head;
+
+        for(int i=0;i<n;i++){
+            fast = fast.next;
+        }
+
+        if(fast == null){
+            head = head.next;
+            print(head);
+            return;
+        }
+
+        while(fast.next != null){
+            fast = fast.next;
+            slow = slow.next;
+        }
+
+        slow.next = slow.next.next;
+
+        print(head);
+    }
+
+    static void print(Node head){
+        while(head != null){
+            System.out.print(head.data+" ");
+            head = head.next;
+        }
+    }
+}
+=========================
+10. IntersectionOfLL.java
+=========================
+💡 Logic:
+Use HashSet
+Store nodes of first list
+Check second list
+import java.util.*;
+
+public class IntersectionOfLL {
+    public static void main(String[] args) {
+
+        Node common = new Node(8);
+        common.next = new Node(10);
+
+        Node head1 = new Node(3);
+        head1.next = common;
+
+        Node head2 = new Node(1);
+        head2.next = common;
+
+        HashSet<Node> set = new HashSet<>();
+
+        while(head1 != null){
+            set.add(head1);
+            head1 = head1.next;
+        }
+
+        while(head2 != null){
+            if(set.contains(head2)){
+                System.out.println("Intersection at: " + head2.data);
+                return;
+            }
+            head2 = head2.next;
+        }
+    }
+}
+
+
+=========================
+1. PushPop.java
+=========================
+💡 Logic:
+Push → add element to stack
+Pop → remove top element
+import java.util.*;
+
+public class PushPop {
+    public static void main(String[] args) {
+        Stack<Integer> stack = new Stack<>();
+
+        stack.push(10);
+        stack.push(20);
+        stack.push(30);
+
+        System.out.println("Stack: " + stack);
+
+        stack.pop();
+
+        System.out.println("After Pop: " + stack);
+    }
+}
+=========================
+2. ValidParentheses.java
+=========================
+💡 Logic:
+Push opening brackets
+Match closing brackets
+import java.util.*;
+
+public class ValidParentheses {
+    public static void main(String[] args) {
+        String s = "()[]{}";
+
+        Stack<Character> st = new Stack<>();
+
+        for(char c : s.toCharArray()){
+            if(c=='(' || c=='[' || c=='{'){
+                st.push(c);
+            } else {
+                if(st.isEmpty()){
+                    System.out.println("Invalid");
+                    return;
+                }
+
+                char top = st.pop();
+
+                if((c==')' && top!='(') ||
+                   (c==']' && top!='[') ||
+                   (c=='}' && top!='{')){
+                    System.out.println("Invalid");
+                    return;
+                }
+            }
+        }
+
+        System.out.println(st.isEmpty() ? "Valid" : "Invalid");
+    }
+}
+=========================
+3. ReverseString.java
+=========================
+💡 Logic:
+Push characters → pop to reverse
+import java.util.*;
+
+public class ReverseString {
+    public static void main(String[] args) {
+        String s = "hello";
+
+        Stack<Character> st = new Stack<>();
+
+        for(char c : s.toCharArray()){
+            st.push(c);
+        }
+
+        String reversed = "";
+
+        while(!st.isEmpty()){
+            reversed += st.pop();
+        }
+
+        System.out.println(reversed);
+    }
+}
+=========================
+4. NextGreaterElement.java
+=========================
+💡 Logic:
+Compare next elements
+Find first greater
+public class NextGreaterElement {
+    public static void main(String[] args) {
+        int[] arr = {4,5,2,10};
+
+        for(int i=0;i<arr.length;i++){
+            int next = -1;
+
+            for(int j=i+1;j<arr.length;j++){
+                if(arr[j] > arr[i]){
+                    next = arr[j];
+                    break;
+                }
+            }
+
+            System.out.println(arr[i] + " -> " + next);
+        }
+    }
+}
+=========================
+5. MinStack.java
+=========================
+💡 Logic:
+Maintain another stack for minimum
+import java.util.*;
+
+class MinStack {
+    Stack<Integer> main = new Stack<>();
+    Stack<Integer> min = new Stack<>();
+
+    void push(int x){
+        main.push(x);
+
+        if(min.isEmpty() || x <= min.peek()){
+            min.push(x);
+        }
+    }
+
+    void pop(){
+        if(main.peek().equals(min.peek())){
+            min.pop();
+        }
+        main.pop();
+    }
+
+    int getMin(){
+        return min.peek();
+    }
+
+    public static void main(String[] args) {
+        MinStack s = new MinStack();
+
+        s.push(5);
+        s.push(2);
+        s.push(8);
+
+        System.out.println("Min: " + s.getMin());
+    }
+}
+=========================
+6. InfixToPostfix.java
+=========================
+💡 Logic:
+Use stack for operators
+Follow precedence
+import java.util.*;
+
+public class InfixToPostfix {
+    static int precedence(char c){
+        if(c=='+' || c=='-') return 1;
+        if(c=='*' || c=='/') return 2;
+        return 0;
+    }
+
+    public static void main(String[] args) {
+        String exp = "a+b*c";
+
+        Stack<Character> st = new Stack<>();
+        String result = "";
+
+        for(char c : exp.toCharArray()){
+            if(Character.isLetterOrDigit(c)){
+                result += c;
+            } else {
+                while(!st.isEmpty() && precedence(c) <= precedence(st.peek())){
+                    result += st.pop();
+                }
+                st.push(c);
+            }
+        }
+
+        while(!st.isEmpty()){
+            result += st.pop();
+        }
+
+        System.out.println(result);
+    }
+}
+=========================
+7. EvaluateExpression.java
+=========================
+💡 Logic:
+Evaluate postfix expression
+import java.util.*;
+
+public class EvaluateExpression {
+    public static void main(String[] args) {
+        String exp = "23+5*"; // (2+3)*5
+
+        Stack<Integer> st = new Stack<>();
+
+        for(char c : exp.toCharArray()){
+            if(Character.isDigit(c)){
+                st.push(c - '0');
+            } else {
+                int b = st.pop();
+                int a = st.pop();
+
+                switch(c){
+                    case '+': st.push(a+b); break;
+                    case '-': st.push(a-b); break;
+                    case '*': st.push(a*b); break;
+                    case '/': st.push(a/b); break;
+                }
+            }
+        }
+
+        System.out.println(st.pop());
+    }
+}
+=========================
+8. StockSpan.java
+=========================
+💡 Logic:
+Count consecutive smaller elements
+import java.util.*;
+
+public class StockSpan {
+    public static void main(String[] args) {
+        int[] price = {100,80,60,70,60,75,85};
+
+        for(int i=0;i<price.length;i++){
+            int span = 1;
+
+            for(int j=i-1;j>=0 && price[j] <= price[i]; j--){
+                span++;
+            }
+
+            System.out.print(span + " ");
+        }
+    }
+}
+=========================
+9. LargestHistogram.java
+=========================
+💡 Logic:
+Use stack to calculate area
+import java.util.*;
+
+public class LargestHistogram {
+    public static void main(String[] args) {
+        int[] heights = {2,1,5,6,2,3};
+
+        Stack<Integer> st = new Stack<>();
+        int maxArea = 0;
+        int i = 0;
+
+        while(i < heights.length){
+            if(st.isEmpty() || heights[i] >= heights[st.peek()]){
+                st.push(i++);
+            } else {
+                int h = heights[st.pop()];
+                int width = st.isEmpty() ? i : i - st.peek() - 1;
+                maxArea = Math.max(maxArea, h * width);
+            }
+        }
+
+        while(!st.isEmpty()){
+            int h = heights[st.pop()];
+            int width = st.isEmpty() ? i : i - st.peek() - 1;
+            maxArea = Math.max(maxArea, h * width);
+        }
+
+        System.out.println("Max Area: " + maxArea);
+    }
+}
+=========================
+10. BalancedBrackets.java
+=========================
+💡 Logic:
+
+Same as valid parentheses but generalized
+
+import java.util.*;
+
+public class BalancedBrackets {
+    public static void main(String[] args) {
+        String s = "{[()]}";
+
+        Stack<Character> st = new Stack<>();
+
+        for(char c : s.toCharArray()){
+            if(c=='(' || c=='[' || c=='{'){
+                st.push(c);
+            } else {
+                if(st.isEmpty()){
+                    System.out.println("Not Balanced");
+                    return;
+                }
+
+                char top = st.pop();
+
+                if((c==')' && top!='(') ||
+                   (c==']' && top!='[') ||
+                   (c=='}' && top!='{')){
+                    System.out.println("Not Balanced");
+                    return;
+                }
+            }
+        }
+
+        System.out.println(st.isEmpty() ? "Balanced" : "Not Balanced");
+    }
+}
+
+
+=========================
+1. EnqueueDequeue.java
+=========================
+💡 Logic:
+Enqueue → add element at rear
+Dequeue → remove from front
+import java.util.*;
+
+public class EnqueueDequeue {
+    public static void main(String[] args) {
+        Queue<Integer> q = new LinkedList<>();
+
+        q.add(10);
+        q.add(20);
+        q.add(30);
+
+        System.out.println("Queue: " + q);
+
+        q.poll();
+
+        System.out.println("After Dequeue: " + q);
+    }
+}
+=========================
+2. CircularQueue.java
+=========================
+💡 Logic:
+Use modulo to reuse space
+public class CircularQueue {
+    int[] arr = new int[5];
+    int front = -1, rear = -1;
+
+    void enqueue(int x){
+        if((rear+1)%arr.length == front){
+            System.out.println("Full");
+            return;
+        }
+
+        if(front == -1) front = 0;
+
+        rear = (rear+1)%arr.length;
+        arr[rear] = x;
+    }
+
+    void dequeue(){
+        if(front == -1){
+            System.out.println("Empty");
+            return;
+        }
+
+        if(front == rear){
+            front = rear = -1;
+        } else {
+            front = (front+1)%arr.length;
+        }
+    }
+
+    void display(){
+        if(front == -1) return;
+
+        int i = front;
+
+        while(true){
+            System.out.print(arr[i] + " ");
+            if(i == rear) break;
+            i = (i+1)%arr.length;
+        }
+    }
+
+    public static void main(String[] args) {
+        CircularQueue q = new CircularQueue();
+
+        q.enqueue(10);
+        q.enqueue(20);
+        q.enqueue(30);
+
+        q.dequeue();
+
+        q.display();
+    }
+}
+=========================
+3. QueueUsingStack.java
+=========================
+💡 Logic:
+Use 2 stacks
+Reverse order
+import java.util.*;
+
+public class QueueUsingStack {
+    Stack<Integer> s1 = new Stack<>();
+    Stack<Integer> s2 = new Stack<>();
+
+    void enqueue(int x){
+        s1.push(x);
+    }
+
+    int dequeue(){
+        if(s2.isEmpty()){
+            while(!s1.isEmpty()){
+                s2.push(s1.pop());
+            }
+        }
+        return s2.pop();
+    }
+
+    public static void main(String[] args) {
+        QueueUsingStack q = new QueueUsingStack();
+
+        q.enqueue(10);
+        q.enqueue(20);
+
+        System.out.println(q.dequeue());
+    }
+}
+=========================
+4. SlidingWindowMax.java
+=========================
+💡 Logic:
+For each window, find max
+public class SlidingWindowMax {
+    public static void main(String[] args) {
+        int[] arr = {1,3,-1,-3,5,3,6,7};
+        int k = 3;
+
+        for(int i=0;i<=arr.length-k;i++){
+            int max = arr[i];
+
+            for(int j=i;j<i+k;j++){
+                if(arr[j] > max) max = arr[j];
+            }
+
+            System.out.print(max + " ");
+        }
+    }
+}
+=========================
+5. PriorityQueueDemo.java
+=========================
+💡 Logic:
+Min heap (default)
+import java.util.*;
+
+public class PriorityQueueDemo {
+    public static void main(String[] args) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+
+        pq.add(30);
+        pq.add(10);
+        pq.add(20);
+
+        while(!pq.isEmpty()){
+            System.out.print(pq.poll() + " ");
+        }
+    }
+}
+=========================
+6. BFS.java
+=========================
+💡 Logic:
+Use queue to traverse graph level by level
+import java.util.*;
+
+public class BFS {
+    public static void main(String[] args) {
+
+        int V = 5;
+        ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
+
+        for(int i=0;i<V;i++){
+            graph.add(new ArrayList<>());
+        }
+
+        graph.get(0).add(1);
+        graph.get(0).add(2);
+        graph.get(1).add(3);
+        graph.get(2).add(4);
+
+        boolean[] visited = new boolean[V];
+
+        Queue<Integer> q = new LinkedList<>();
+
+        q.add(0);
+        visited[0] = true;
+
+        while(!q.isEmpty()){
+            int node = q.poll();
+            System.out.print(node + " ");
+
+            for(int neigh : graph.get(node)){
+                if(!visited[neigh]){
+                    visited[neigh] = true;
+                    q.add(neigh);
+                }
+            }
+        }
+    }
+}
+=========================
+7. FirstNonRepeating.java
+=========================
+💡 Logic:
+Use queue + frequency array
+import java.util.*;
+
+public class FirstNonRepeating {
+    public static void main(String[] args) {
+        String s = "aabc";
+
+        int[] freq = new int[26];
+        Queue<Character> q = new LinkedList<>();
+
+        for(char c : s.toCharArray()){
+            freq[c-'a']++;
+            q.add(c);
+
+            while(!q.isEmpty() && freq[q.peek()-'a'] > 1){
+                q.poll();
+            }
+
+            if(q.isEmpty()) System.out.print("-1 ");
+            else System.out.print(q.peek() + " ");
+        }
+    }
+}
+=========================
+8. ReverseQueue.java
+=========================
+💡 Logic:
+Use stack to reverse
+import java.util.*;
+
+public class ReverseQueue {
+    public static void main(String[] args) {
+        Queue<Integer> q = new LinkedList<>();
+        q.add(1); q.add(2); q.add(3);
+
+        Stack<Integer> st = new Stack<>();
+
+        while(!q.isEmpty()){
+            st.push(q.poll());
+        }
+
+        while(!st.isEmpty()){
+            q.add(st.pop());
+        }
+
+        System.out.println(q);
+    }
+}
+=========================
+9. DequeDemo.java
+=========================
+💡 Logic:
+Double-ended queue
+import java.util.*;
+
+public class DequeDemo {
+    public static void main(String[] args) {
+        Deque<Integer> dq = new LinkedList<>();
+
+        dq.addFirst(10);
+        dq.addLast(20);
+        dq.addFirst(5);
+
+        System.out.println(dq);
+    }
+}
+=========================
+10. KthElementQueue.java
+=========================
+💡 Logic:
+Remove k-1 elements
+import java.util.*;
+
+public class KthElementQueue {
+    public static void main(String[] args) {
+        Queue<Integer> q = new LinkedList<>();
+
+        q.add(10);
+        q.add(20);
+        q.add(30);
+        q.add(40);
+
+        int k = 3;
+
+        for(int i=1;i<k;i++){
+            q.poll();
+        }
+
+        System.out.println("Kth Element: " + q.peek());
+    }
+}
+
+
+=========================
+🔁 RECURSION (5)
+=========================
+
+46. Factorial.java
+💡 Logic:
+n! = n × (n-1)!
+public class Factorial {
+    static int fact(int n){
+        if(n == 0) return 1;
+        return n * fact(n - 1);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(fact(5));
+    }
+}
+47. Fibonacci.java
+💡 Logic:
+f(n) = f(n-1) + f(n-2)
+public class Fibonacci {
+    static int fib(int n){
+        if(n <= 1) return n;
+        return fib(n-1) + fib(n-2);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(fib(6));
+    }
+}
+48. SumOfDigits.java
+public class SumOfDigits {
+    static int sum(int n){
+        if(n == 0) return 0;
+        return n % 10 + sum(n / 10);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(sum(1234));
+    }
+}
+49. ReverseNumber.java
+public class ReverseNumber {
+    static int rev = 0;
+
+    static void reverse(int n){
+        if(n == 0) return;
+
+        rev = rev * 10 + n % 10;
+        reverse(n / 10);
+    }
+
+    public static void main(String[] args) {
+        reverse(1234);
+        System.out.println(rev);
+    }
+}
+50. PowerFunction.java
+public class PowerFunction {
+    static int power(int a, int b){
+        if(b == 0) return 1;
+        return a * power(a, b - 1);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(power(2, 5));
+    }
+}
+=========================
+🔍 SEARCHING (5)
+=========================
+
+51. LinearSearch.java
+public class LinearSearch {    
+  public static void main(String[] args) {        
+  int[] arr = {3,5,7,9};        
+  int target = 7;        
+  for(int i=0;i<arr.length;i++){            
+    if(arr[i] == target){               
+      System.out.println(i);                
+      return;           
+    }        
+  }       
+  System.out.println("Not Found");   
+  }
+}
+
+52. BinarySearch.java
+public class BinarySearch {
+    public static void main(String[] args) {
+        int[] arr = {1,2,3,4,5};
+        int target = 4;
+
+        int l=0, r=arr.length-1;
+
+        while(l <= r){
+            int mid = (l+r)/2;
+
+            if(arr[mid] == target){
+                System.out.println(mid);
+                return;
+            }
+            else if(arr[mid] < target) l = mid + 1;
+            else r = mid - 1;
+        }
+
+        System.out.println("Not Found");
+    }
+}
+53. FirstOccurrence.java
+public class FirstOccurrence {
+    public static void main(String[] args) {
+        int[] arr = {1,2,2,2,3};
+        int target = 2;
+
+        int l=0, r=arr.length-1, res=-1;
+
+        while(l <= r){
+            int mid = (l+r)/2;
+
+            if(arr[mid] == target){
+                res = mid;
+                r = mid - 1;
+            }
+            else if(arr[mid] < target) l = mid + 1;
+            else r = mid - 1;
+        }
+
+        System.out.println(res);
+    }
+}
+54. LastOccurrence.java
+public class LastOccurrence {
+    public static void main(String[] args) {
+        int[] arr = {1,2,2,2,3};
+        int target = 2;
+
+        int l=0, r=arr.length-1, res=-1;
+
+        while(l <= r){
+            int mid = (l+r)/2;
+
+            if(arr[mid] == target){
+                res = mid;
+                l = mid + 1;
+            }
+            else if(arr[mid] < target) l = mid + 1;
+            else r = mid - 1;
+        }
+
+        System.out.println(res);
+    }
+}
+55. PeakElement.java
+public class PeakElement {
+    public static void main(String[] args) {
+        int[] arr = {1,3,20,4,1};
+
+        for(int i=1;i<arr.length-1;i++){
+            if(arr[i] > arr[i-1] && arr[i] > arr[i+1]){
+                System.out.println("Peak: " + arr[i]);
+                return;
+            }
+        }
+    }
+}
+=========================
+🧠 MISC (5)
+=========================
+
+56. Palindrome.java
+public class Palindrome {    
+  public static void main(String[] args) {        
+  String s = "madam";        
+  int l=0, r=s.length()-1;        
+  while(l<r){            
+    if(s.charAt(l) != s.charAt(r)){                
+      System.out.println("Not Palindrome");                
+      return;            
+    }            
+    l++; r--;        
+  }        
+  System.out.println("Palindrome");    
+  }
+}
+
+57. Anagram.java
+import java.util.*;
+
+public class Anagram {
+    public static void main(String[] args) {
+        String a = "listen";
+        String b = "silent";
+
+        char[] x = a.toCharArray();
+        char[] y = b.toCharArray();
+
+        Arrays.sort(x);
+        Arrays.sort(y);
+
+        System.out.println(Arrays.equals(x,y));
+    }
+}
+58. PrimeCheck.java
+public class PrimeCheck {
+    public static void main(String[] args) {
+        int n = 7;
+
+        for(int i=2;i<=Math.sqrt(n);i++){
+            if(n % i == 0){
+                System.out.println("Not Prime");
+                return;
+            }
+        }
+
+        System.out.println("Prime");
+    }
+}
+59. GCD.java
+public class GCD {
+    static int gcd(int a, int b){
+        if(b == 0) return a;
+        return gcd(b, a % b);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(gcd(12, 18));
+    }
+}
+60. LCM.java
+public class LCM {
+  static int gcd(int a, int b){       
+      if(b == 0) return a;        
+      return gcd(b, a % b);   
+  }    
+  public static void main(String[] args) {       
+    int a = 12, b = 18;        
+    int lcm = (a * b) / gcd(a,b);        
+    System.out.println(lcm);    
+  }
+}
