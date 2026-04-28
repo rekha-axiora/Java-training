@@ -1,0 +1,32 @@
+=========================
+📘 DAY 14 — Abstraction
+=========================
+Abstraction hides implementation and shows only essential features.
+
+WHY?
+Reduce complexity
+Increase security
+
+ABSTRACT CLASS:
+abstract class Vehicle {
+    abstract void start();
+}
+
+IMPLEMENTATION:
+class Car extends Vehicle {
+    void start() {
+        System.out.println("Car starts with key");
+    }
+}
+
+USAGE:
+public class Main {
+    public static void main(String[] args) {
+        Vehicle v = new Car();
+        v.start();
+    }
+}
+
+RULES:
+Cannot create object of abstract class
+Can have both abstract + normal methods
