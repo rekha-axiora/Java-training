@@ -1,0 +1,66 @@
+=========================
+📘 DAY 11 — Classes, Objects, Constructors
+=========================
+CLASS
+
+A class is a blueprint/template for creating objects. It defines variables and methods.
+
+Example:
+class Student {
+    String name;
+    int age;
+
+    void display() {
+        System.out.println(name + " " + age);
+    }
+}
+
+OBJECT
+
+An object is an instance of a class.
+
+Example:
+public class Main {
+    public static void main(String[] args) {
+        Student s1 = new Student();
+        s1.name = "Rekha";
+        s1.age = 21;
+
+        s1.display();
+    }
+}
+
+CONSTRUCTOR
+
+A constructor is a special method used to initialize objects.
+
+Rules:
+Same name as class
+No return type
+Called automatically
+  
+DEFAULT CONSTRUCTOR
+class Student {
+    Student() {
+        System.out.println("Default constructor called");
+    }
+}
+
+PARAMETERIZED CONSTRUCTOR
+class Student {
+    String name;
+    int age;
+
+    Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+EXAMPLE
+public class Main {
+    public static void main(String[] args) {
+        Student s1 = new Student("Rekha", 21);
+        s1.display();
+    }
+}
