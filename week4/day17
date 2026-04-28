@@ -1,0 +1,54 @@
+=========================
+DAY 17 — Stack & Queue
+=========================
+STACK (LIFO)
+Last In First Out
+
+Example:
+Plate stack
+
+Stack using Array
+class Stack {
+int arr[] = new int[5];
+int top = -1;
+
+void push(int x) {
+    arr[++top] = x;
+}
+
+void pop() {
+    top--;
+}
+
+void peek() {
+    System.out.println(arr[top]);
+}
+
+}
+
+QUEUE (FIFO)
+First In First Out
+
+Example:
+Line in bank
+
+Queue using Array
+class Queue {
+int arr[] = new int[5];
+int front = 0, rear = 0;
+
+void enqueue(int x) {
+    arr[rear++] = x;
+}
+
+void dequeue() {
+    front++;
+}
+
+void display() {
+    for (int i = front; i < rear; i++) {
+        System.out.println(arr[i]);
+    }
+}
+
+}
