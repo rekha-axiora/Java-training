@@ -1,0 +1,463 @@
+1. WHAT IS ARRAYLIST
+
+* Dynamic array in Java
+* Part of Java Collections Framework
+* Allows duplicate elements
+* Maintains insertion order
+
+2. SIZE VS CAPACITY
+
+* Size = number of elements present
+* Capacity = total size of internal array
+
+Example:
+Capacity = 10
+Size = 3
+
+3. HOW ARRAYLIST WORKS
+
+* Internally uses an array
+* When array becomes full → resize happens
+* Elements copied to new bigger array
+
+4. RESIZE LOGIC
+
+* New capacity = old + (old / 2)
+* Example:
+  10 → 15 → 22 → 33 ...
+
+5. TIME COMPLEXITY
+
+* get(index) → O(1)
+* add() → O(1) amortized
+* insert in middle → O(n)
+* remove → O(n)
+
+6. WHY INSERT/REMOVE IS SLOW
+
+* Elements need to shift left/right
+* Happens in array internally
+
+7. ADVANTAGES
+
+* Fast random access
+* Easy to use
+* Cache-friendly
+
+8. DISADVANTAGES
+
+* Slow insert/delete in middle
+* Resizing cost
+* Wastes memory sometimes
+
+9. ARRAY VS ARRAYLIST
+
+ARRAY:
+
+* Fixed size
+* Primitive types allowed
+* Faster
+
+ARRAYLIST:
+
+* Dynamic size
+* Only objects (Integer, not int)
+* More flexible
+
+10. INTERNAL STEPS OF ADD()
+
+1. Check if array is full
+2. If full → resize (increase capacity by 1.5x)
+3. Copy old elements into new array
+4. Insert new element at index = size
+5. Increment size by 1
+
+Example:
+Initial:
+data = [10, 20, 30, _, _]
+size = 3
+
+Add(40):
+data = [10, 20, 30, 40, _]
+size = 4
+
+If full case:
+Old capacity = 4
+New capacity = 6
+
+New array:
+[10, 20, 30, 40, _, _]
+
+11. INTERNAL STEPS OF REMOVE()
+
+1. Check if index is valid
+
+   * index >= 0 AND index < size
+   * else → throw IndexOutOfBoundsException
+
+2. Store element to be removed (optional, if needed)
+
+3. Shift all elements to the left starting from that index
+
+   * for i = index to size - 2
+   * data[i] = data[i + 1]
+
+4. Set last element to default value (optional cleanup)
+
+   * data[size - 1] = 0 (or null for objects)
+
+5. Decrement size by 1
+
+6. Return removed element (optional)
+
+Example:
+Before:
+data = [10, 20, 30, 40, _]
+size = 4
+
+Remove index = 1
+
+After shifting:
+data = [10, 30, 40, 40, _]
+
+After cleanup:
+data = [10, 30, 40, _, _]
+size = 3
+
+* KEY INTERVIEW POINT
+    "ArrayList is backed by a dynamic array which resizes by 1.5x when full, providing O(1) access but O(n) insertion/deletion in middle."
+
+
+  
+CODING PROGRAMS
+---
+
+1. CUSTOM ARRAYLIST
+
+---
+
+class MyArrayList {
+private int[] data;
+private int size;
+
+```
+public MyArrayList() {
+    data = new int[5];
+    size = 0;
+}
+
+public void add(int value) {
+    if (size == data.length) {
+        resize();
+    }
+    data[size++] = value;
+}
+
+private void resize() {
+    int newCapacity = data.length + data.length / 2;
+    int[] newData = new int[newCapacity];
+
+    for (int i = 0; i < data.length; i++) {
+        newData[i] = data[i];
+    }
+
+    data = newData;
+}
+
+public int get(int index) {
+    if (index < 0 || index >= size) {
+        throw new IndexOutOfBoundsException();
+    }
+    return data[index];
+}
+
+public void remove(int index) {
+    if (index < 0 || index >= size) {
+        throw new IndexOutOfBoundsException();
+    }
+
+    for (int i = index; i < size - 1; i++) {
+        data[i] = data[i + 1];
+    }
+
+    size--;
+}
+
+public void print() {
+    for (int i = 0; i < size; i++) {
+        System.out.print(data[i] + " ");
+    }
+    System.out.println();
+}
+```
+
+}
+
+---
+
+2. REVERSE ARRAY
+
+---
+
+class ReverseArray {
+public static void main(String[] args) {
+int[] arr = {1, 2, 3, 4, 5};
+
+```
+    int left = 0, right = arr.length - 1;
+
+    while (left < right) {
+        int temp = arr[left];
+        arr[left] = arr[right];
+        arr[right] = temp;
+
+        left++;
+        right--;
+    }
+
+    for (int num : arr) {
+        System.out.print(num + " ");
+    }
+}
+```
+
+}
+
+---
+
+3. FIND MAX ELEMENT
+
+---
+
+class MaxElement {
+public static void main(String[] args) {
+int[] arr = {10, 5, 20, 8};
+
+```
+    int max = arr[0];
+
+    for (int i = 1; i < arr.length; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+    }
+
+    System.out.println("Max: " + max);
+}
+```
+
+}
+
+---
+
+4. MOVE ZEROES
+
+---
+
+class MoveZeroes {
+public static void main(String[] args) {
+int[] arr = {0, 1, 0, 3, 12};
+
+```
+    int index = 0;
+
+    for (int i = 0; i < arr.length; i++) {
+        if (arr[i] != 0) {
+            arr[index++] = arr[i];
+        }
+    }
+
+    while (index < arr.length) {
+        arr[index++] = 0;
+    }
+
+    for (int num : arr) {
+        System.out.print(num + " ");
+    }
+}
+```
+
+}
+
+---
+
+5. TWO SUM (BRUTE FORCE)
+
+---
+
+class TwoSum {
+public static void main(String[] args) {
+int[] arr = {2, 7, 11, 15};
+int target = 9;
+
+```
+    for (int i = 0; i < arr.length; i++) {
+        for (int j = i + 1; j < arr.length; j++) {
+            if (arr[i] + arr[j] == target) {
+                System.out.println(i + " " + j);
+            }
+        }
+    }
+}
+```
+
+}
+
+---
+
+6. REMOVE DUPLICATES (SORTED)
+
+---
+
+class RemoveDuplicates {
+public static void main(String[] args) {
+int[] arr = {1, 1, 2, 2, 3, 4, 4};
+
+```
+    int index = 1;
+
+    for (int i = 1; i < arr.length; i++) {
+        if (arr[i] != arr[i - 1]) {
+            arr[index++] = arr[i];
+        }
+    }
+
+    for (int i = 0; i < index; i++) {
+        System.out.print(arr[i] + " ");
+    }
+}
+```
+
+}
+
+---
+
+7. CHECK SORTED ARRAY
+
+---
+
+class CheckSorted {
+public static void main(String[] args) {
+int[] arr = {1, 2, 3, 4, 5};
+
+```
+    boolean isSorted = true;
+
+    for (int i = 1; i < arr.length; i++) {
+        if (arr[i] < arr[i - 1]) {
+            isSorted = false;
+            break;
+        }
+    }
+
+    System.out.println(isSorted);
+}
+```
+
+}
+
+---
+
+8. LEFT ROTATE BY ONE
+
+---
+
+class LeftRotate {
+public static void main(String[] args) {
+int[] arr = {1, 2, 3, 4, 5};
+
+```
+    int first = arr[0];
+
+    for (int i = 0; i < arr.length - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
+
+    arr[arr.length - 1] = first;
+
+    for (int num : arr) {
+        System.out.print(num + " ");
+    }
+}
+```
+
+}
+
+---
+
+9. SECOND LARGEST ELEMENT
+
+---
+
+class SecondLargest {
+public static void main(String[] args) {
+int[] arr = {10, 20, 4, 45, 99};
+
+```
+    int first = Integer.MIN_VALUE;
+    int second = Integer.MIN_VALUE;
+
+    for (int num : arr) {
+        if (num > first) {
+            second = first;
+            first = num;
+        } else if (num > second && num != first) {
+            second = num;
+        }
+    }
+
+    System.out.println("Second Largest: " + second);
+}
+```
+
+}
+
+---
+
+10. FIND MISSING NUMBER
+
+---
+
+class MissingNumber {
+public static void main(String[] args) {
+int[] arr = {3, 0, 1};
+
+```
+    int n = arr.length;
+    int total = n * (n + 1) / 2;
+
+    int sum = 0;
+    for (int num : arr) {
+        sum += num;
+    }
+
+    System.out.println("Missing: " + (total - sum));
+}
+```
+
+}
+
+---
+
+11. FIND DUPLICATE
+
+---
+
+class FindDuplicate {
+public static void main(String[] args) {
+int[] arr = {1, 3, 4, 2, 2};
+
+```
+    for (int i = 0; i < arr.length; i++) {
+        for (int j = i + 1; j < arr.length; j++) {
+            if (arr[i] == arr[j]) {
+                System.out.println("Duplicate: " + arr[i]);
+                return;
+            }
+        }
+    }
+}
+```
+
+}
+
