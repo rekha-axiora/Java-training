@@ -1,0 +1,665 @@
+EXCEPTIONS
+
+---
+
+1. WHAT IS EXCEPTION
+
+---
+
+* Runtime error that disrupts normal program flow
+
+Example:
+
+* Divide by zero
+* NullPointerException
+* ArrayIndexOutOfBounds
+
+---
+
+2. TYPES OF EXCEPTIONS
+
+---
+
+CHECKED EXCEPTIONS
+
+* Checked at compile time
+* Must handle or declare
+  Example:
+* IOException
+* SQLException
+
+UNCHECKED EXCEPTIONS
+
+* Runtime exceptions
+* Not mandatory to handle
+  Example:
+* NullPointerException
+* ArithmeticException
+
+---
+
+3. EXCEPTION HIERARCHY
+
+---
+
+Throwable
+├── Error
+└── Exception
+├── Checked
+└── RuntimeException (Unchecked)
+
+---
+
+4. TRY-CATCH
+
+---
+
+try {
+// risky code
+} catch (Exception e) {
+// handle error
+}
+
+---
+
+5. MULTIPLE CATCH
+
+---
+
+try {
+int a = 10 / 0;
+} catch (ArithmeticException e) {
+System.out.println("Divide by zero");
+} catch (Exception e) {
+System.out.println("General exception");
+}
+
+---
+
+6. FINALLY
+
+---
+
+* Always executes (except JVM crash)
+
+try {
+// code
+} finally {
+System.out.println("Always runs");
+}
+
+---
+
+7. THROW vs THROWS
+
+---
+
+throw:
+
+* Used to explicitly throw exception
+
+throws:
+
+* Declares exception in method signature
+
+---
+
+8. CUSTOM EXCEPTION
+
+---
+
+class MyException extends Exception {
+public MyException(String message) {
+super(message);
+}
+}
+
+---
+
+9. EXCEPTION FLOW
+
+---
+
+* Error occurs → JVM creates exception object
+* Searches for matching catch block
+* If not found → program terminates
+
+---
+
+10. BEST PRACTICES
+
+---
+
+* Catch specific exceptions
+* Do NOT catch generic Exception blindly
+* Do NOT swallow exceptions
+* Always log exception
+* Use finally for cleanup
+* Use try-with-resources
+
+---
+
+11. TRY WITH RESOURCES
+
+---
+
+import java.io.*;
+
+class Demo {
+public static void main(String[] args) {
+try (BufferedReader br = new BufferedReader(new FileReader("file.txt"))) {
+System.out.println(br.readLine());
+} catch (Exception e) {
+e.printStackTrace();
+}
+}
+}
+
+---
+
+12. INTERVIEW QUESTIONS (THINK)
+
+Q1: Difference between checked and unchecked?
+
+* Compile-time vs runtime
+
+Q2: Why not catch Exception?
+
+* Hides real issue
+
+Q3: What happens if no catch?
+
+* Program crashes
+
+Q4: finally always runs?
+
+* Yes (except JVM shutdown)
+
+Q5: throw vs throws?
+
+* throw → actual exception
+* throws → declaration
+
+---
+
+13. CODING PROGRAMS
+
+## BASIC TRY-CATCH
+
+class TryCatchDemo {
+public static void main(String[] args) {
+try {
+int a = 10 / 0;
+} catch (ArithmeticException e) {
+System.out.println("Error: " + e.getMessage());
+}
+}
+}
+
+---
+
+## CUSTOM EXCEPTION USAGE
+
+class InvalidAgeException extends Exception {
+public InvalidAgeException(String msg) {
+super(msg);
+}
+}
+
+class Test {
+public static void checkAge(int age) throws InvalidAgeException {
+if (age < 18) {
+throw new InvalidAgeException("Not eligible");
+}
+System.out.println("Eligible");
+}
+
+```
+public static void main(String[] args) {
+    try {
+        checkAge(16);
+    } catch (InvalidAgeException e) {
+        System.out.println(e.getMessage());
+    }
+}
+```
+
+}
+
+---
+
+## MULTIPLE CATCH
+
+class MultiCatch {
+public static void main(String[] args) {
+try {
+int[] arr = new int[5];
+arr[10] = 50;
+} catch (ArrayIndexOutOfBoundsException e) {
+System.out.println("Index error");
+} catch (Exception e) {
+System.out.println("General error");
+}
+}
+}
+
+---
+
+## FINALLY EXAMPLE
+
+class FinallyDemo {
+public static void main(String[] args) {
+try {
+System.out.println("Try block");
+} finally {
+System.out.println("Finally block");
+}
+}
+}
+
+---
+
+14. INTERVIEW TRAPS
+
+---
+
+* Catching Exception everywhere
+* Ignoring exception (empty catch)
+* Not using finally for cleanup
+* Printing only e.getMessage() (loses stack trace)
+
+---
+
+15. FINAL UNDERSTANDING
+
+---
+
+* Exceptions = control flow for errors
+* Use specific handling
+* Keep code clean + safe
+* Design matters more than syntax
+
+
+EXCEPTIONS + BEST PRACTICES (PRACTICE)
+
+========================================
+
+1. BASIC TRY-CATCH
+   ========================================
+
+class TryCatchDemo {
+public static void main(String[] args) {
+try {
+int a = 10 / 0;
+} catch (ArithmeticException e) {
+System.out.println("Error: " + e.getMessage());
+}
+}
+}
+
+---
+
+========================================
+2. MULTIPLE CATCH
+=================
+
+class MultiCatch {
+public static void main(String[] args) {
+try {
+int[] arr = new int[5];
+arr[10] = 50;
+} catch (ArrayIndexOutOfBoundsException e) {
+System.out.println("Index error");
+} catch (Exception e) {
+System.out.println("General error");
+}
+}
+}
+
+---
+
+========================================
+3. FINALLY BLOCK
+================
+
+class FinallyDemo {
+public static void main(String[] args) {
+try {
+System.out.println("Try block");
+} finally {
+System.out.println("Finally block");
+}
+}
+}
+
+---
+
+========================================
+4. THROW KEYWORD
+================
+
+class ThrowDemo {
+public static void main(String[] args) {
+int age = 15;
+
+```
+    if (age < 18) {
+        throw new ArithmeticException("Not eligible");
+    }
+
+    System.out.println("Eligible");
+}
+```
+
+}
+
+---
+
+========================================
+5. THROWS KEYWORD
+=================
+
+class ThrowsDemo {
+static void check() throws Exception {
+throw new Exception("Error occurred");
+}
+
+```
+public static void main(String[] args) {
+    try {
+        check();
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+    }
+}
+```
+
+}
+
+---
+
+========================================
+6. CUSTOM EXCEPTION
+===================
+
+class InvalidAgeException extends Exception {
+public InvalidAgeException(String msg) {
+super(msg);
+}
+}
+
+class TestCustom {
+static void checkAge(int age) throws InvalidAgeException {
+if (age < 18) {
+throw new InvalidAgeException("Not eligible");
+}
+System.out.println("Eligible");
+}
+
+```
+public static void main(String[] args) {
+    try {
+        checkAge(16);
+    } catch (InvalidAgeException e) {
+        System.out.println(e.getMessage());
+    }
+}
+```
+
+}
+
+---
+
+========================================
+7. TRY-WITH-RESOURCES
+=====================
+
+import java.io.*;
+
+class TryWithResourcesDemo {
+public static void main(String[] args) {
+try (BufferedReader br = new BufferedReader(new FileReader("file.txt"))) {
+System.out.println(br.readLine());
+} catch (Exception e) {
+e.printStackTrace();
+}
+}
+}
+
+---
+
+========================================
+8. FINALLY WITH RETURN
+======================
+
+class FinallyReturn {
+public static void main(String[] args) {
+System.out.println(test());
+}
+
+```
+static int test() {
+    try {
+        return 1;
+    } finally {
+        return 2;
+    }
+}
+```
+
+}
+
+---
+
+========================================
+9. NESTED TRY-CATCH
+===================
+
+class NestedTry {
+public static void main(String[] args) {
+try {
+try {
+int a = 10 / 0;
+} catch (ArithmeticException e) {
+System.out.println("Inner catch");
+}
+} catch (Exception e) {
+System.out.println("Outer catch");
+}
+}
+}
+
+---
+
+========================================
+10. NULL POINTER HANDLING
+=========================
+
+class NullDemo {
+public static void main(String[] args) {
+String s = null;
+
+```
+    try {
+        System.out.println(s.length());
+    } catch (NullPointerException e) {
+        System.out.println("Null error");
+    }
+}
+```
+
+}
+
+---
+
+EXCEPTIONS COMPLETE PRACTICE + ANSWERS
+
+========================================
+
+1. CUSTOM EXCEPTION (NEGATIVE NUMBER)
+   ========================================
+
+class NegativeNumberException extends Exception {
+public NegativeNumberException(String msg) {
+super(msg);
+}
+}
+
+class TestNegative {
+static void check(int num) throws NegativeNumberException {
+if (num < 0) {
+throw new NegativeNumberException("Negative not allowed");
+}
+System.out.println("Valid number");
+}
+
+```
+public static void main(String[] args) {
+    try {
+        check(-5);
+    } catch (NegativeNumberException e) {
+        System.out.println(e.getMessage());
+    }
+}
+```
+
+}
+
+---
+
+========================================
+2. HANDLE DIVIDE BY ZERO
+========================
+
+class DivideDemo {
+public static void main(String[] args) {
+try {
+int a = 10 / 0;
+} catch (ArithmeticException e) {
+System.out.println("Cannot divide by zero");
+}
+}
+}
+
+---
+
+========================================
+3. TRY-WITH-RESOURCES (FILE READING)
+====================================
+
+import java.io.*;
+
+class FileReadDemo {
+public static void main(String[] args) {
+try (BufferedReader br = new BufferedReader(new FileReader("file.txt"))) {
+System.out.println(br.readLine());
+} catch (Exception e) {
+e.printStackTrace();
+}
+}
+}
+
+---
+
+========================================
+4. FINALLY EXECUTION
+====================
+
+class FinallyDemo {
+public static void main(String[] args) {
+try {
+System.out.println("Try block");
+} finally {
+System.out.println("Finally always runs");
+}
+}
+}
+
+---
+
+========================================
+5. THROW vs THROWS
+==================
+
+class ThrowThrowsDemo {
+
+```
+static void method() throws Exception {   // throws (declaration)
+    throw new Exception("Error");         // throw (actual)
+}
+
+public static void main(String[] args) {
+    try {
+        method();
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+    }
+}
+```
+
+}
+
+---
+
+========================================
+6. CHECKED vs UNCHECKED (EXPLANATION)
+=====================================
+
+Checked Exception:
+
+* Checked at compile time
+* Must handle or declare
+* Example: IOException
+
+Unchecked Exception:
+
+* Occurs at runtime
+* Not mandatory to handle
+* Example: NullPointerException
+
+---
+
+========================================
+7. TRY-WITH-RESOURCES (EXPLANATION)
+===================================
+
+* Automatically closes resources
+* No need for finally block
+* Works with AutoCloseable
+
+---
+
+========================================
+8. DOES FINALLY ALWAYS EXECUTE?
+===============================
+
+* Yes, except:
+
+  * System.exit()
+  * JVM crash
+
+---
+
+========================================
+9. BEST PRACTICES
+=================
+
+* Use specific catch blocks
+* Avoid generic Exception
+* Always log exceptions
+* Clean resources properly
+* Prefer try-with-resources
+
+---
+
+========================================
+10. FINAL UNDERSTANDING
+=======================
+
+* Exceptions handle runtime errors
+* throw → actual exception
+* throws → declaration
+* finally → cleanup
+* Design matters more than syntax
+
+
