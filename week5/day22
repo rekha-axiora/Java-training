@@ -1,0 +1,303 @@
+LINKEDLIST 
+
+---
+
+1. WHAT IS LINKEDLIST
+
+---
+
+* Collection of nodes
+* Each node contains:
+
+  1. Data
+  2. Reference (next pointer)
+
+---
+
+2. TYPES OF LINKEDLIST
+
+---
+
+* Singly LinkedList
+* Doubly LinkedList
+* Circular LinkedList
+
+---
+
+3. NODE STRUCTURE
+
+---
+
+class Node {
+int data;
+Node next;
+}
+
+---
+
+4. HOW IT WORKS
+
+---
+
+* Elements are NOT stored in contiguous memory
+* Each node points to the next node
+* Last node points to null
+
+---
+
+5. HEAD
+
+---
+
+* First node of the list
+* Entry point to access LinkedList
+
+---
+
+6. TIME COMPLEXITY
+
+---
+
+* Insert at head → O(1)
+* Insert at tail → O(n)
+* Search → O(n)
+* Delete → O(n)
+
+---
+
+7. ADVANTAGES
+
+---
+
+* Dynamic size
+* Efficient insertion and deletion
+* No need for resizing
+
+---
+
+8. DISADVANTAGES
+
+---
+
+* No direct access (no index)
+* Extra memory required for pointers
+* Traversal required for most operations
+
+---
+
+9. ARRAY VS LINKEDLIST
+
+---
+
+ARRAY:
+
+* Contiguous memory
+* Fast access → O(1)
+* Fixed size
+
+LINKEDLIST:
+
+* Non-contiguous memory
+* Access time → O(n)
+* Dynamic size
+
+---
+
+10. KEY INTERVIEW POINT
+
+---
+
+"LinkedList stores elements as nodes where each node points to the next node, allowing dynamic memory usage but slower access compared to arrays."
+
+  
+LINKEDLIST CODING PROGRAMS:
+
+---
+
+1. CREATE LINKEDLIST + INSERT AT END
+
+---
+
+class LinkedListDemo {
+
+```
+static class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+Node head;
+
+public void insert(int data) {
+    Node newNode = new Node(data);
+
+    if (head == null) {
+        head = newNode;
+        return;
+    }
+
+    Node temp = head;
+    while (temp.next != null) {
+        temp = temp.next;
+    }
+
+    temp.next = newNode;
+}
+
+public void print() {
+    Node temp = head;
+    while (temp != null) {
+        System.out.print(temp.data + " -> ");
+        temp = temp.next;
+    }
+    System.out.println("null");
+}
+```
+
+}
+
+---
+
+2. INSERT AT BEGINNING
+
+---
+
+public void insertAtHead(int data) {
+Node newNode = new Node(data);
+newNode.next = head;
+head = newNode;
+}
+
+---
+
+3. DELETE NODE BY VALUE
+
+---
+
+public void delete(int key) {
+if (head == null) return;
+
+```
+if (head.data == key) {
+    head = head.next;
+    return;
+}
+
+Node temp = head;
+
+while (temp.next != null && temp.next.data != key) {
+    temp = temp.next;
+}
+
+if (temp.next != null) {
+    temp.next = temp.next.next;
+}
+```
+
+}
+
+---
+
+4. REVERSE LINKEDLIST
+
+---
+
+public void reverse() {
+Node prev = null;
+Node curr = head;
+Node next;
+
+```
+while (curr != null) {
+    next = curr.next;
+    curr.next = prev;
+    prev = curr;
+    curr = next;
+}
+
+head = prev;
+```
+
+}
+
+---
+
+5. FIND MIDDLE NODE
+
+---
+
+public void findMiddle() {
+Node slow = head;
+Node fast = head;
+
+```
+while (fast != null && fast.next != null) {
+    slow = slow.next;
+    fast = fast.next.next;
+}
+
+System.out.println("Middle: " + slow.data);
+```
+
+}
+
+---
+
+6. DETECT CYCLE
+
+---
+
+public boolean hasCycle() {
+Node slow = head;
+Node fast = head;
+
+```
+while (fast != null && fast.next != null) {
+    slow = slow.next;
+    fast = fast.next.next;
+
+    if (slow == fast) {
+        return true;
+    }
+}
+
+return false;
+```
+
+}
+
+---
+
+7. MAIN METHOD (TESTING)
+
+---
+
+public static void main(String[] args) {
+LinkedListDemo list = new LinkedListDemo();
+
+```
+list.insert(10);
+list.insert(20);
+list.insert(30);
+
+list.print();
+
+list.insertAtHead(5);
+list.print();
+
+list.delete(20);
+list.print();
+
+list.reverse();
+list.print();
+
+list.findMiddle();
+```
+
+}
+
