@@ -1,0 +1,373 @@
+HASHMAP
+
+---
+
+1. INTERNAL STRUCTURE
+
+---
+
+* Array of buckets
+* Each bucket contains:
+
+  * LinkedList (collision handling)
+  * Tree (Java 8 if size > 8)
+
+---
+
+2. HASH FUNCTION
+
+---
+
+* Converts key → index
+* index = key % capacity
+
+---
+
+3. HOW put() WORKS
+
+---
+
+1. Calculate index = hash(key)
+2. Go to bucket[index]
+3. If empty → insert node
+4. If not empty:
+
+   * Traverse nodes
+   * If key exists → update value
+   * Else → insert at beginning
+
+---
+
+4. HOW get() WORKS
+
+---
+
+1. Calculate index
+2. Go to bucket
+3. Traverse linked list
+4. If key matches → return value
+5. Else → return -1
+
+---
+
+5. COLLISION
+
+---
+
+* Multiple keys → same index
+
+Example:
+1 % 5 = 1
+6 % 5 = 1
+11 % 5 = 1
+
+---
+
+6. COLLISION HANDLING
+
+---
+
+* Using LinkedList (chaining)
+* Java 8 → Tree if nodes > 8
+
+---
+
+7. LOAD FACTOR
+
+---
+
+* Default = 0.75
+* Threshold = capacity * load factor
+
+---
+
+8. RESIZING
+
+---
+
+* When size > threshold:
+
+  * Capacity doubles
+  * Rehash all elements
+
+---
+
+9. TIME COMPLEXITY
+
+---
+
+* Average:
+  put() → O(1)
+  get() → O(1)
+
+* Worst:
+  O(n) (before tree)
+  O(log n) (after tree)
+
+---
+
+10. equals() vs hashCode()
+
+---
+
+* hashCode() → bucket selection
+* equals() → key comparison
+
+---
+
+11. PUT OPERATION (STEP FLOW)
+
+---
+
+* Compute index
+* Traverse bucket
+* Update if exists
+* Else insert new node at head
+
+---
+
+12. GET OPERATION (STEP FLOW)
+
+---
+
+* Compute index
+* Traverse bucket
+* Match key
+* Return value or -1
+
+---
+
+13. BUCKET STRUCTURE EXAMPLE
+
+---
+
+capacity = 5
+
+put(1,10)
+put(6,20)
+put(11,30)
+
+Index   Bucket
+
+0       null
+1       (11,30) -> (6,20) -> (1,10) -> null
+2       null
+3       null
+4       null
+
+---
+
+14. MODIFY CAPACITY TEST
+
+---
+
+capacity = 10
+
+1 % 10 = 1
+6 % 10 = 6
+11 % 10 = 1
+
+New buckets:
+
+1 → (11,30) -> (1,10)
+6 → (6,20)
+
+---
+
+15. KEY OBSERVATIONS
+
+---
+
+* Smaller capacity → more collisions
+* Larger capacity → fewer collisions
+* Good hash → better performance
+
+---
+
+16. INTERVIEW QUESTIONS
+
+---
+
+Q1: Why O(1) average but O(n) worst?
+
+* Good hashing vs collisions
+
+Q2: Why equals() + hashCode()?
+
+* Bucket + exact match
+
+Q3: Same hashCode?
+
+* Collision → same bucket
+
+Q4: Why Tree in Java 8?
+
+* O(n) → O(log n)
+
+Q5: Load factor = 1.0?
+
+* More collisions
+
+Q6: Null key?
+
+* Only one allowed
+
+---
+
+17. INTERVIEW CODING
+
+## SUBARRAY SUM = K
+
+import java.util.*;
+
+class SubarraySumK {
+public static void main(String[] args) {
+int[] arr = {1, 2, 3};
+int k = 3;
+
+```
+    HashMap<Integer, Integer> map = new HashMap<>();
+    map.put(0, 1);
+
+    int sum = 0, count = 0;
+
+    for (int num : arr) {
+        sum += num;
+
+        if (map.containsKey(sum - k)) {
+            count += map.get(sum - k);
+        }
+
+        map.put(sum, map.getOrDefault(sum, 0) + 1);
+    }
+
+    System.out.println(count);
+}
+```
+
+}
+
+---
+
+## LONGEST CONSECUTIVE SEQUENCE
+
+import java.util.*;
+
+class LongestConsecutive {
+public static void main(String[] args) {
+int[] nums = {100, 4, 200, 1, 3, 2};
+
+```
+    HashSet<Integer> set = new HashSet<>();
+    for (int num : nums) set.add(num);
+
+    int longest = 0;
+
+    for (int num : set) {
+        if (!set.contains(num - 1)) {
+            int current = num;
+            int length = 1;
+
+            while (set.contains(current + 1)) {
+                current++;
+                length++;
+            }
+
+            longest = Math.max(longest, length);
+        }
+    }
+
+    System.out.println(longest);
+}
+```
+
+}
+
+---
+
+## COUNT PAIRS WITH SUM
+
+import java.util.*;
+
+class CountPairs {
+public static void main(String[] args) {
+int[] arr = {1, 5, 7, -1, 5};
+int k = 6;
+
+```
+    HashMap<Integer, Integer> map = new HashMap<>();
+    int count = 0;
+
+    for (int num : arr) {
+        int diff = k - num;
+
+        if (map.containsKey(diff)) {
+            count += map.get(diff);
+        }
+
+        map.put(num, map.getOrDefault(num, 0) + 1);
+    }
+
+    System.out.println(count);
+}
+```
+
+}
+
+---
+
+## LONGEST SUBARRAY SUM = K
+
+import java.util.*;
+
+class LongestSubarraySumK {
+public static void main(String[] args) {
+int[] arr = {1, -1, 5, -2, 3};
+int k = 3;
+
+```
+    HashMap<Integer, Integer> map = new HashMap<>();
+    int sum = 0, maxLen = 0;
+
+    for (int i = 0; i < arr.length; i++) {
+        sum += arr[i];
+
+        if (sum == k) {
+            maxLen = i + 1;
+        }
+
+        if (map.containsKey(sum - k)) {
+            maxLen = Math.max(maxLen, i - map.get(sum - k));
+        }
+
+        map.putIfAbsent(sum, i);
+    }
+
+    System.out.println(maxLen);
+}
+```
+
+}
+
+---
+
+18. INTERVIEW TRAPS
+
+---
+
+* Using brute force instead of HashMap
+* Forgetting prefix sum logic
+* Missing map.put(0,1)
+* Confusing index vs frequency
+
+---
+
+19. FINAL UNDERSTANDING
+
+---
+
+* HashMap = array + hashing + chaining
+* put() → insert/update
+* get() → search in bucket
+* Performance depends on hash quality
+
