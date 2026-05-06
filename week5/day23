@@ -1,0 +1,269 @@
+HASHMAP
+
+---
+
+1. WHAT IS HASHMAP
+
+---
+
+* Data structure that stores key-value pairs
+* Uses hashing to store data
+* Provides fast lookup
+
+Example:
+Key → Value
+"apple" → 10
+
+---
+
+2. WHY HASHMAP
+
+---
+
+* Fast search, insert, delete
+* Avoids O(n) search
+
+---
+
+3. HOW HASHING WORKS
+
+---
+
+* Key → hash function → index
+* Index used to store value in array
+
+---
+
+4. INTERNAL STRUCTURE
+
+---
+
+* Array of buckets
+* Each bucket stores:
+
+  * LinkedList OR Tree (Java 8)
+
+---
+
+5. COLLISION
+
+---
+
+* When two keys map to same index
+
+Example:
+hash("A") = 2
+hash("B") = 2
+
+---
+
+6. COLLISION HANDLING
+
+---
+
+* Chaining (LinkedList)
+* Java 8 → converts to Tree if large
+
+---
+
+7. LOAD FACTOR
+
+---
+
+* Default = 0.75
+* When size > capacity * load factor → resize
+
+---
+
+8. RESIZING
+
+---
+
+* Capacity doubles
+* All elements rehashed
+
+---
+
+9. TIME COMPLEXITY
+
+---
+
+* put() → O(1)
+* get() → O(1)
+* remove() → O(1)
+
+Worst case → O(n)
+
+---
+
+10. equals() vs hashCode()
+
+---
+
+* hashCode() → decides bucket
+* equals() → checks equality
+
+---
+
+11. KEY INTERVIEW POINT
+
+---
+
+"HashMap uses hashing to store key-value pairs in buckets, handles collisions using chaining, and resizes when load factor exceeds 0.75."
+
+  
+HASHMAP CODING PROGRAMS
+
+---
+
+1. BASIC HASHMAP USAGE
+
+---
+
+import java.util.*;
+
+class HashMapDemo {
+public static void main(String[] args) {
+HashMap<String, Integer> map = new HashMap<>();
+
+```
+    map.put("apple", 10);
+    map.put("banana", 20);
+    map.put("orange", 30);
+
+    System.out.println(map.get("apple"));
+    System.out.println(map.containsKey("banana"));
+
+    map.remove("orange");
+
+    System.out.println(map);
+}
+```
+
+}
+
+---
+
+2. FREQUENCY COUNT
+
+---
+
+import java.util.*;
+
+class FrequencyCount {
+public static void main(String[] args) {
+int[] arr = {1, 2, 2, 3, 1, 4};
+
+```
+    HashMap<Integer, Integer> map = new HashMap<>();
+
+    for (int num : arr) {
+        map.put(num, map.getOrDefault(num, 0) + 1);
+    }
+
+    System.out.println(map);
+}
+```
+
+}
+
+---
+
+3. TWO SUM (OPTIMAL)
+
+---
+
+import java.util.*;
+
+class TwoSumOptimal {
+public static void main(String[] args) {
+int[] arr = {2, 7, 11, 15};
+int target = 9;
+
+```
+    HashMap<Integer, Integer> map = new HashMap<>();
+
+    for (int i = 0; i < arr.length; i++) {
+        int diff = target - arr[i];
+
+        if (map.containsKey(diff)) {
+            System.out.println(map.get(diff) + " " + i);
+        }
+
+        map.put(arr[i], i);
+    }
+}
+```
+
+}
+
+---
+
+4. FIRST NON-REPEATING CHARACTER
+
+---
+
+import java.util.*;
+
+class FirstNonRepeating {
+public static void main(String[] args) {
+String str = "aabbcde";
+
+```
+    HashMap<Character, Integer> map = new HashMap<>();
+
+    for (char ch : str.toCharArray()) {
+        map.put(ch, map.getOrDefault(ch, 0) + 1);
+    }
+
+    for (char ch : str.toCharArray()) {
+        if (map.get(ch) == 1) {
+            System.out.println("First Non-Repeating: " + ch);
+            break;
+        }
+    }
+}
+```
+
+}
+
+---
+
+5. CHECK ANAGRAM
+
+---
+
+import java.util.*;
+
+class AnagramCheck {
+public static void main(String[] args) {
+String s1 = "listen";
+String s2 = "silent";
+
+```
+    if (s1.length() != s2.length()) {
+        System.out.println("Not Anagram");
+        return;
+    }
+
+    HashMap<Character, Integer> map = new HashMap<>();
+
+    for (char ch : s1.toCharArray()) {
+        map.put(ch, map.getOrDefault(ch, 0) + 1);
+    }
+
+    for (char ch : s2.toCharArray()) {
+        if (!map.containsKey(ch) || map.get(ch) == 0) {
+            System.out.println("Not Anagram");
+            return;
+        }
+        map.put(ch, map.get(ch) - 1);
+    }
+
+    System.out.println("Anagram");
+}
+```
+
+}
+
+
