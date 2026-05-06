@@ -1,0 +1,320 @@
+STRINGS + IMMUTABILITY
+
+---
+
+1. WHAT IS STRING
+
+---
+
+* String is a sequence of characters
+* In Java, String is an object
+
+---
+
+2. IMMUTABILITY
+
+---
+
+* Once created, String cannot be changed
+
+Example:
+String s = "hello";
+s = s + "world";
+
+* New object is created
+* Old object remains unchanged
+
+---
+
+3. WHY STRING IS IMMUTABLE
+
+---
+
+* Security (used in class loading, URLs)
+* Thread safety
+* Caching (String pool)
+
+---
+
+4. STRING POOL
+
+---
+
+* Special memory area inside heap
+* Stores unique String literals
+
+Example:
+String a = "java";
+String b = "java";
+
+* Both refer to same object
+
+---
+
+5. STRING CREATION
+
+---
+
+String s1 = "hello";        → uses pool
+String s2 = new String("hello"); → creates new object
+
+---
+
+6. == vs equals()
+
+---
+
+==       → compares reference
+equals() → compares value
+
+Example:
+String a = "java";
+String b = new String("java");
+
+a == b → false
+a.equals(b) → true
+
+---
+
+7. STRING METHODS
+
+---
+
+* length()
+* charAt()
+* substring()
+* equals()
+* toLowerCase()
+* toUpperCase()
+
+---
+
+8. STRINGBUILDER vs STRINGBUFFER
+
+---
+
+String:
+
+* Immutable
+* Slow for modifications
+
+StringBuilder:
+
+* Mutable
+* Fast
+* Not thread-safe
+
+StringBuffer:
+
+* Mutable
+* Thread-safe
+* Slower than StringBuilder
+
+---
+
+9. KEY INTERVIEW POINT
+
+---
+
+"String is immutable and stored in String pool to optimize memory and ensure thread safety."
+
+---
+
+10. IMMUTABLE CLASS RULES
+
+---
+
+* Class must be final
+* Fields must be private and final
+* No setters
+* Initialize via constructor
+* Return copies if needed
+
+---
+
+11. CUSTOM IMMUTABLE CLASS
+
+---
+
+final class Person {
+private final String name;
+
+```
+public Person(String name) {
+    this.name = name;
+}
+
+public String getName() {
+    return name;
+}
+```
+
+}
+
+---
+
+12. INTERNAL BEHAVIOR
+
+---
+
+String s = "hello";
+s.concat("world");
+
+* Does NOT modify original string
+* Returns new string
+
+---
+
+13. INTERVIEW QUESTIONS (THINK)
+
+Q1: Why String is immutable?
+
+* Security + caching + thread safety
+
+Q2: What is String pool?
+
+* Memory optimization for literals
+
+Q3: Difference between String and StringBuilder?
+
+* Immutable vs mutable
+
+Q4: Why == fails for String?
+
+* Compares references
+
+---
+
+14. CODING PROGRAMS
+
+## REVERSE STRING
+
+class ReverseString {
+public static void main(String[] args) {
+String s = "hello";
+String rev = "";
+
+```
+    for (int i = s.length() - 1; i >= 0; i--) {
+        rev += s.charAt(i);
+    }
+
+    System.out.println(rev);
+}
+```
+
+}
+
+---
+
+## PALINDROME CHECK
+
+class Palindrome {
+public static void main(String[] args) {
+String s = "madam";
+
+```
+    int left = 0, right = s.length() - 1;
+    boolean isPal = true;
+
+    while (left < right) {
+        if (s.charAt(left) != s.charAt(right)) {
+            isPal = false;
+            break;
+        }
+        left++;
+        right--;
+    }
+
+    System.out.println(isPal);
+}
+```
+
+}
+
+---
+
+## LONGEST SUBSTRING WITHOUT REPEATING
+
+import java.util.*;
+
+class LongestSubstring {
+public static void main(String[] args) {
+String s = "abcabcbb";
+
+```
+    HashSet<Character> set = new HashSet<>();
+    int left = 0, max = 0;
+
+    for (int right = 0; right < s.length(); right++) {
+        while (set.contains(s.charAt(right))) {
+            set.remove(s.charAt(left));
+            left++;
+        }
+
+        set.add(s.charAt(right));
+        max = Math.max(max, right - left + 1);
+    }
+
+    System.out.println(max);
+}
+```
+
+}
+
+---
+
+## ANAGRAM CHECK
+
+import java.util.*;
+
+class Anagram {
+public static void main(String[] args) {
+String s1 = "listen";
+String s2 = "silent";
+
+```
+    if (s1.length() != s2.length()) {
+        System.out.println("Not Anagram");
+        return;
+    }
+
+    int[] count = new int[26];
+
+    for (char c : s1.toCharArray()) count[c - 'a']++;
+    for (char c : s2.toCharArray()) count[c - 'a']--;
+
+    for (int num : count) {
+        if (num != 0) {
+            System.out.println("Not Anagram");
+            return;
+        }
+    }
+
+    System.out.println("Anagram");
+}
+```
+
+}
+
+---
+
+15. INTERVIEW TRAPS
+
+---
+
+* Using == instead of equals()
+* Forgetting String immutability
+* Using String in loops (slow)
+* Not using StringBuilder
+
+---
+
+16. FINAL UNDERSTANDING
+
+---
+
+* String = immutable + pooled
+* Modifications create new objects
+* Use StringBuilder for performance
+
